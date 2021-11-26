@@ -12,6 +12,7 @@ public class Grid {
 	Grid(int x, int y) {
 		width = x;
 		height = y;
-		char[0][0] = 'M';
+		grid = new char[y][x];
+		grid[0][0] = 'M';
 	}
 }
