@@ -4,4 +4,8 @@ import java.awt.event.*;
 
 class View extends JFrame {
 	JPanel panel;
+
+	View() {
+		panel = new JPanel();
+	}
 }
