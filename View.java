@@ -10,4 +10,6 @@ class View extends JFrame {
 		panel = new JPanel();
 		viewGrid = new JLabel[dim][dim];
 	}
+
+	//TODO: draw() method that redraws the entire JLabel grid based on piece positions or something
 }
