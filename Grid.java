@@ -17,4 +17,7 @@ public class Grid {
 	}
 
 	//TODO: "distribute" method to place the things on the grid
+	public void generateThings() {
+
+	}
 }

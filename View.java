@@ -4,8 +4,10 @@ import java.awt.event.*;
 
 class View extends JFrame {
 	JPanel panel;
+	JLabel[][] viewGrid;
 
-	View() {
+	View(int dim) {
 		panel = new JPanel();
+		viewGrid = new JLabel[dim][dim];
 	}
 }
