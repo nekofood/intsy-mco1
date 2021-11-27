@@ -15,4 +15,6 @@ public class Grid {
 		grid = new char[y][x];
 		grid[0][0] = 'M';
 	}
+
+	//TODO: "distribute" method to place the things on the grid
 }
