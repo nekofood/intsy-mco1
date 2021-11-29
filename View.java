@@ -30,6 +30,7 @@ class View extends JFrame {
 		}
 
 		add(panel);
+		setVisible(true);
 	}
 	//TODO: i'm not sure where the control panel should go
 

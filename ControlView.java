@@ -23,5 +23,8 @@ public class ControlView extends JFrame {
 		panel.add(pauseButton);
 		panel.add(playButton);
 		panel.add(stepButton);
+
+		add(panel);
+		setVisible(true);
 	}
 }
