@@ -21,8 +21,8 @@ public class ControlView extends JFrame {
 		playButton = new JButton("Play");
 		pauseButton = new JButton("Pause");
 
-		actionCount = new JLabel("Actions taken: ");
-		spacesTraversed = new JLabel("Spaces traversed: ");
+		actionCount = new JLabel("Actions taken: 0");
+		spacesTraversed = new JLabel("Spaces traversed: 0");
 
 		panel.add(pauseButton);
 		panel.add(playButton);
@@ -32,5 +32,13 @@ public class ControlView extends JFrame {
 
 		add(panel);
 		setVisible(true);
+	}
+
+	public void updateSpacesTraversed(int stat) {
+		spacesTraversed.setText("Spaces traversed: " + stat);
+	}
+
+	public void updateActionCount(int stat) {
+		actionCount.setText("Actions taken: " + stat);
 	}
 }

@@ -17,6 +17,16 @@ class Controller {
 		spacesTraversed = 0;
 	}
 
+	public void incrementSpacesTraversed() {
+		++spacesTraversed;
+		v.updateSpacesTraversed(spacesTraversed);
+	}
+
+	public void incrementActionCount() {
+		++actionCount;
+		v.updateActionCount(actionCount);
+	}
+
 	//IDEA: while-true loop to run the simulation in fast mode?
 
 	//listener for the control window
