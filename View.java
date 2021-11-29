@@ -33,6 +33,32 @@ class View extends JFrame {
 	}
 	//TODO: i'm not sure where the control panel should go
 
-	//TODO: draw() method that redraws the entire JLabel grid based on piece positions or something
-	//can't do it until i finish Grid class
+	//Updates the view grid based on the char grid
+	//This is achieved by wiping the grafix, and then redrawing them
+	public void updateView(char[][] grid) {
+		//wipe the grid
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				viewGrid[i][j].setIcon(null);
+			}
+		}
+
+		//place the icons on the grid
+		for (i = 0; i < n; i++) {
+			for (j = 0; j < n; j++) {
+				switch (grid[i][j]) {
+					case 'M':
+						viewGrid[i][j].setIcon(minerIcon); break;
+					case 'P':
+						viewGrid[i][j].setIcon(pitIcon); break;
+					case 'G':
+						viewGrid[i][j].setIcon(goldIcon); break;
+					case 'B':
+						viewGrid[i][j].setIcon(beaconIcon); break;
+					default:
+						break;
+				}
+			}
+		}
+	}
 }
