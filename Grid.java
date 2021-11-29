@@ -8,7 +8,8 @@ public class Grid {
 	   M = miner
 	   P = pit
 	   B = beacon
-	   G = gold */
+	   G = gold
+	   \0 = null/empty */
 	private char[][] grid;
 	private Miner miner;
 	private int minerX;
@@ -21,29 +22,99 @@ public class Grid {
 		minerY = 0;
 
 		grid = new char[n][n];
-		grid[0][0] = 'M';
-	}
 
-	//TODO: "distribute" method to place the things on the grid
-	public void generateThings() {
-		//generate random numbers from 1 to n to place pot
-		int range = (n - 1) + 1;
-		int x = (int)(Math.random() * range) + 1;
-		int y = (int)(Math.random() * range) + 1;
-		grid[y][x] = 'G';
+		grid[0][0] = 'M';
+		generateThings ();
 	}
 
 	//updates the miner's position on the char grid using the miner's x,y
 	public void updateMinerPosition() {
-		int x = miner.getX()
-		int y = miner.getY()
+		int x = miner.getX();
+		int y = miner.getY();
 
 		//first, clear the position of the miner char
-		grid[minerY][minerX] = null;
+		grid[minerY][minerX] = '\0';
 		//place the new miner char
 		grid[y][x] = 'M';
 		//update minerX and minerY
 		minerX = x;
 		minerY = y;
+	}
+
+	//Console printing of board (for testing)
+	public void printGrid () {
+        int i, j;
+
+        for (i = 0; i < n; i++) {
+            for (j = 0; j < n; j++)
+                System.out.print("[ " + grid[i][j] + " ]  ");
+
+            System.out.println("\n");
+        }
+    }
+
+	//TODO: "distribute" method to place the things on the grid
+	private void generateThings() {
+		generatePit ();
+		generateBeacon ();
+		generateGold ();
+	}
+
+	//Generates pit/s into the board
+	private void generatePit() {
+		int x, y;
+		int i, pitCount;
+
+		pitCount = (int)(n * 0.25);	//number of pits
+
+		x = y = 0;
+		
+		//Loops on how many pits are on the grid
+		for (i = 0; i < pitCount; i++) {
+			/* while position isnt the miner's or
+					 position isnt empty */
+			while (grid[x][y] == 'M' || grid[x][y] != '\0') {
+				//generate random numbers from 0 to n
+				x = (int)(Math.random() * n);
+				y = (int)(Math.random() * n);
+			}
+
+			grid[x][y] = 'P';
+		}
+	}
+
+	//Generates beacon/s into the board
+	private void generateBeacon () {
+		int x, y;
+		int i, beaconCount;
+
+		beaconCount = (int)(n * 0.1);	//number of beacon/s
+		if (beaconCount < 1) beaconCount = 1; //Always at least one beacon
+
+		x = y = 0;
+		
+		//Loops how many beacon/s are on the grid
+		for (i = 0; i < beaconCount; i++) {
+			while (grid[x][y] == 'M' || grid[x][y] != '\0') {
+				x = (int)(Math.random() * n);
+				y = (int)(Math.random() * n);
+			}
+
+			grid[x][y] = 'B';
+		}
+	}
+
+	//Generates gold into the board
+	private void generateGold () {
+		int x, y;
+
+		x = y = 0;
+
+		while (grid[x][y] == 'M' || grid[x][y] != '\0') {
+			x = (int)(Math.random() * n);
+			y = (int)(Math.random() * n);
+		}
+
+		grid[x][y] = 'G';
 	}
 }
