@@ -41,4 +41,20 @@ public class ControlView extends JFrame {
 	public void updateActionCount(int stat) {
 		actionCount.setText("Actions taken: " + stat);
 	}
+
+	public void addListener(JButton jb, ActionListener al) {
+		jb.addActionListener(al);
+	}
+
+	public JButton getStepButton() {
+		return stepButton;
+	}
+
+	public JButton getPauseButton() {
+		return pauseButton;
+	}
+
+	public JButton getPlayButton() {
+		return playButton;
+	}
 }
