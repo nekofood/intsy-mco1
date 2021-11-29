@@ -6,13 +6,13 @@ import javax.swing.*;
 class Controller {
 	private Grid grid;
 	private View view;
-	private boolean fastPlay; //is the simulation in "fast play" mode?
+	private boolean isPlaying; //is the simulation in "play" mode?
 	private int actionCount, spacesTraversed;
 
 	Controller(Grid g, View v) {
 		grid = g;
 		view = v;
-		fastPlay = false;
+		isPlaying = false;
 		actionCount = 0;
 		spacesTraversed = 0;
 	}
