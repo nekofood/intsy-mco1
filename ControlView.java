@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 //this class contains the window with the step, pause, speed controls, etc
-public class ControlView extends JFrame{
+public class ControlView extends JFrame {
 	private JPanel panel;
 	private JButton stepButton; /* step 1 move
 								   it's either this button is disabled during play, or
