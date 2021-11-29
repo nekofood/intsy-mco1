@@ -10,6 +10,7 @@ public class ControlView extends JFrame {
 								   we make it so that pressing it will pause the action*/
 	private JButton playButton; //play the miner (TODO: how often should the simulation progress?)
 	private JButton pauseButton;
+	private JLabel actionCount, spacesTraversed;
 
 	ControlView() {
 		setTitle("Controls");
@@ -20,9 +21,14 @@ public class ControlView extends JFrame {
 		playButton = new JButton("Play");
 		pauseButton = new JButton("Pause");
 
+		actionCount = new JLabel("Actions taken: ");
+		spacesTraversed = new JLabel("Spaces traversed: ");
+
 		panel.add(pauseButton);
 		panel.add(playButton);
 		panel.add(stepButton);
+		panel.add(actionCount);
+		panel.add(spacesTraversed);
 
 		add(panel);
 		setVisible(true);
