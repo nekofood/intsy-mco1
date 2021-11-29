@@ -7,10 +7,14 @@ class Controller {
 	private Grid grid;
 	private View view;
 	private boolean fastPlay; //is the simulation in "fast play" mode?
+	private int actionCount, spacesTraversed;
 
 	Controller(Grid g, View v) {
 		grid = g;
 		view = v;
+		fastPlay = false;
+		actionCount = 0;
+		spacesTraversed = 0;
 	}
 
 	//IDEA: while-true loop to run the simulation in fast mode?
