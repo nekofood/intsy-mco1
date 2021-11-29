@@ -15,9 +15,9 @@ public class Grid {
 	private int minerX;
 	private int minerY;
 
-	Grid(int length, Miner m) {
+	Grid(int length) {
 		n = length;
-		miner = m;
+		miner = new Miner(0, 0);
 		minerX = 0;
 		minerY = 0;
 
