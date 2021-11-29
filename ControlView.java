@@ -8,7 +8,7 @@ public class ControlView extends JFrame{
 	private JButton stepButton; /* step 1 move
 								   it's either this button is disabled during play, or
 								   we make it so that pressing it will pause the action*/
-	private JButton playButton; //play the miner (TODO: how often should the miner make moves?)
+	private JButton playButton; //play the miner (TODO: how often should the simulation progress?)
 	private JButton pauseButton;
 
 	ControlView() {

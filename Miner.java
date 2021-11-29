@@ -1,22 +1,22 @@
 public class Miner {
 	private int rotation; //0deg = right, 90deg = up, and so on
-	private int x,y;
-                  private String front;
-                
+	private int x,y
+	private String front;
+
 	Miner(int sx, int sy) {
 		rotation = 0;
 		x = sx;
-		y = sy;
-                                    front = "Right";
+		y = sy
+		front = "Right";
 	}
 
 	//Rotate counter-clockwise
 	public void rotate() {
 		rotation = (rotation+90)%360;
-                                    
+
                                     switch(rotation) {
                                         case 0:
-			front = "Right"; 
+			front = "Right";
                                                       break;
 		   case 90:
 			front = "Up";
@@ -31,8 +31,7 @@ public class Miner {
 	}
 
 	//Move forward
-	//Note: does not handle collision yet
-	public void forward() {
+	public void forward(int n) {
 		switch (rotation) {
 			case 0:
 				++x; break;
@@ -48,9 +47,10 @@ public class Miner {
 				break;
 		}
 	}
-                  
-                  // allows the miner to scan mining area on his current front, returns the nearest object in his vicinity
-                  public void scan (char[][] grid, String front) {
+
+
+    // allows the miner to scan mining area on his current front, returns the nearest object in his vicinity
+    public void scan (char[][] grid, String front) {
                       switch(front) {
                             case "Up":
                                     int bClosest = 0;
@@ -62,15 +62,15 @@ public class Miner {
                                         else if(grid[x][y] == 'B' && bClosest == 0){
                                                 System.out.print("A beacon is nearby");
                                                 bClosest = 1;
-                                        }        
+                                        }
                                         else if(grid[x][y] == 'G' && bClosest == 0) {
                                                 System.out.print("A pot of is nearby");
                                                  bClosest = 1;
-                                        }        
+                                        }
                                     }
-                
+
                                     break;
-		  
+
                            case "Down":
 		bClosest = 0;
 		for(int i = this.getX(), j = this.getY(); j <= n; j++){
@@ -81,15 +81,15 @@ public class Miner {
                                         else if(grid[x][y] == 'B' && bClosest == 0){
                                                 System.out.print("A beacon is nearby");
                                                 bClosest = 1;
-                                        }        
+                                        }
                                         else if(grid[x][y] == 'G' && bClosest == 0) {
                                                 System.out.print("A pot of is nearby");
                                                  bClosest = 1;
-                                        }        
+                                        }
                                     }
-                
+
                                     break;
-		  
+
                            case "Left":
 		bClosest = 0;
 		for(int i = this.getX(), j = this.getY(); i >= 0; i--){
@@ -100,15 +100,15 @@ public class Miner {
                                         else if(grid[x][y] == 'B' && bClosest == 0){
                                                 System.out.print("A beacon is nearby");
                                                 bClosest = 1;
-                                        }        
+                                        }
                                         else if(grid[x][y] == 'G' && bClosest == 0) {
                                                 System.out.print("A pot of is nearby");
                                                  bClosest = 1;
-                                        }        
+                                        }
                                     }
-                
+
                                     break;
-	                  
+
                            case "Right":
 		bClosest = 0;
 		for(int i = this.getX(), j = this.getY(); i <= n; i++){
@@ -119,15 +119,15 @@ public class Miner {
                                         else if(grid[x][y] == 'B' && bClosest == 0){
                                                 System.out.print("A beacon is nearby");
                                                 bClosest = 1;
-                                        }        
+                                        }
                                         else if(grid[x][y] == 'G' && bClosest == 0) {
                                                 System.out.print("A pot of is nearby");
                                                  bClosest = 1;
-                                        }        
+                                        }
                                     }
-          
+
                                     break;
-                      }         
+                      }
                   }
 
 	public int getX() {

@@ -27,8 +27,22 @@ public class Grid {
 		generateThings ();
 	}
 
+	//push the miner inbounds if it's OOB
+	private void bindMiner() {
+		if (miner.getX() >= n)
+			miner.updateX(n-1);
+		else if (miner.getX() = -1)
+			miner.updateX(0);
+
+		if (miner.getY() >= n)
+			miner.updateY(n-1);
+		else if (miner.getY() = -1)
+			miner.updateY(n-1);
+	}
+
 	//updates the miner's position on the char grid using the miner's x,y
 	public void updateMinerPosition() {
+		bindMiner(); //push the miner inbounds first
 		int x = miner.getX();
 		int y = miner.getY();
 
@@ -68,7 +82,7 @@ public class Grid {
 		pitCount = (int)(n * 0.25);	//number of pits
 
 		x = y = 0;
-		
+
 		//Loops on how many pits are on the grid
 		for (i = 0; i < pitCount; i++) {
 			/* while position isnt the miner's or
@@ -92,7 +106,7 @@ public class Grid {
 		if (beaconCount < 1) beaconCount = 1; //Always at least one beacon
 
 		x = y = 0;
-		
+
 		//Loops how many beacon/s are on the grid
 		for (i = 0; i < beaconCount; i++) {
 			while (grid[x][y] == 'M' || grid[x][y] != '\0') {
@@ -117,4 +131,6 @@ public class Grid {
 
 		grid[x][y] = 'G';
 	}
+
+
 }
