@@ -48,7 +48,8 @@ public class Miner {
 				break;
 		}
 	}
-        
+                  
+                  // allows the miner to scan mining area on his current front, returns the nearest object in his vicinity
                   public void scan (char[][] grid, String front) {
                       switch(front) {
                             case "Up":
