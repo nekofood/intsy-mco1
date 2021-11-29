@@ -6,19 +6,21 @@ import javax.swing.*;
 public class Controller {
 	private Grid grid;
 	private View view;
+	private ControlView cv;
 	private boolean isPlaying; //is the simulation in "play" mode?
 	private int actionCount, spacesTraversed;
 
-	Controller(Grid g, View v) {
+	Controller(Grid g, View v, ControlView c) {
 		grid = g;
 		view = v;
+		cv = c;
 		isPlaying = false;
 		actionCount = 0;
 		spacesTraversed = 0;
 
-		view.addListener(v.getPlayButton(), new ControlListener);
-		view.addListener(v.getPauseButton(), new ControlListener);
-		view.addListener(v.getStepButton(), new ControlListener);
+		cv.addListener(cv.getPlayButton(), new ControlListener);
+		cv.addListener(cv.getPauseButton(), new ControlListener);
+		cv.addListener(cv.getStepButton(), new ControlListener);
 	}
 
 	public void incrementSpacesTraversed() {
