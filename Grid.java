@@ -10,9 +10,16 @@ public class Grid {
 	   B = beacon
 	   G = gold */
 	private char[][] grid;
+	private Miner miner;
+	private int minerX;
+	private int minerY;
 
-	Grid(int length) {
+	Grid(int length, Miner m) {
 		n = length;
+		miner = m;
+		minerX = 0;
+		minerY = 0;
+
 		grid = new char[n][n];
 		grid[0][0] = 'M';
 	}
@@ -24,5 +31,19 @@ public class Grid {
 		int x = (int)(Math.random() * range) + 1;
 		int y = (int)(Math.random() * range) + 1;
 		grid[y][x] = 'G';
+	}
+
+	//updates the miner's position on the char grid using the miner's x,y
+	public void updateMinerPosition() {
+		int x = miner.getX()
+		int y = miner.getY()
+
+		//first, clear the position of the miner char
+		grid[minerY][minerX] = null;
+		//place the new miner char
+		grid[y][x] = 'M';
+		//update minerX and minerY
+		minerX = x;
+		minerY = y;
 	}
 }
