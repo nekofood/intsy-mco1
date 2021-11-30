@@ -18,6 +18,8 @@ public class ControlView extends JFrame {
 		
 		panel = new JPanel(); //TODO: layout
 		panel.addLayout(new BoxLayout(this, BoxLayout.X_AXIS)); //was thinking of placing the controls at the bottom of the screen? wdyt?
+		panel.add(Box.createRigidArea(new Dimension(5, 5)));
+		
 		stepButton = new JButton("Step");
 		playButton = new JButton("Play");
 		pauseButton = new JButton("Pause");
