@@ -47,15 +47,16 @@ public class Controller {
 	}
 
 	public void gameLoop() {
-		isPlaying = false;
+		view.updateView(grid.getGrid());
+		isPlaying = true;
 		cv.getPlayButton().setEnabled(true);
 		cv.getPauseButton().setEnabled(false);
 		cv.getStepButton().setEnabled(true); //enable step button while in Pause mode
 		while (!gameOver) {
-			view.updateView(grid.getGrid());
-			while (isPlaying) {
+			while (isPlaying == true) {
 					s.Search();
 					incrementSpacesTraversed();
+					view.updateView(grid.getGrid());
 					try {
 						Thread.sleep(700);
 					} catch (InterruptedException e) {
@@ -69,6 +70,7 @@ public class Controller {
 				incrementSpacesTraversed();
 				step = 0;
 				System.out.println("Step...");
+				view.updateView(grid.getGrid());
 			}
 		}
 

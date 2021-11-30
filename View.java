@@ -8,15 +8,17 @@ class View extends JFrame {
 	private ImageIcon minerIcon, pitIcon, goldIcon, beaconIcon;
 	private int n;
 
+	//TODO: Borders, rotation
+
 	View(int dim) {
 		n = dim;
-		System.out.println("Creating a " + dim + " by " + dim + " grid");
+		System.out.println("Creating a " + dim + " by " + dim + " grid (" + n*16 + "x)");
 		panel = new JPanel();
 		viewGrid = new JLabel[n][n];
 
 		setTitle("Miner");
 		setLayout(new BorderLayout());
-		setSize(n*16,n*16);
+		setSize(n*32,n*32);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,8 +29,8 @@ class View extends JFrame {
 		beaconIcon = new ImageIcon("img/beacon.png");
 		goldIcon = new ImageIcon("img/gold.png");
 
-		panel.setLayout(new GridLayout(n, n));
-		
+		panel.setLayout(new GridLayout(n, n, 4, 4));
+
 		for (int i = 0; i < dim; i++) { //create labels
 			for (int j = 0; j < dim; j++) {
 				viewGrid[i][j] = new JLabel();
