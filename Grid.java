@@ -66,10 +66,13 @@ public class Grid {
         int i, j;
 
         for (i = 0; i < n; i++) {
-            for (j = 0; j < n; j++)
-                System.out.print("[ " + grid[i][j] + " ]  ");
-
-            System.out.println("\n");
+            for (j = 0; j < n; j++) {
+				if (grid[i][j] != '\0')
+                	System.out.print(grid[i][j]);
+				else
+					System.out.print(.);
+			}
+            System.out.print("\n");
         }
     }
 
