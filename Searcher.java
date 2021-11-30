@@ -21,7 +21,16 @@ public class Searcher {
 
 	//The "random action" alg goes here
 	public void randomSearch() {
+        int[] directions = {0, 90, 180, 270};
+        int nPick, nDirection;
 
+        nPick = (int)(Math.random () * 4) - 1;
+        nDirection = directions[nPick];
+
+        while (nDirection != miner.getRotation())
+            miner.rotate ();
+        
+        miner.forward ();
 	}
 
     //This adds the move done to the list
