@@ -22,7 +22,13 @@ public class Searcher {
 
     //The main searching alg will be here
     public void Search () {
+        int i;  //just for any loop used here
         int nDirection = miner.getRotation ();
+        /*  This where it keeps tabs on scan result in what direction. [0] right, [1] top ...
+            'L' just means Miner is on the edge of that direction already, otherwise it puts the letter */
+        char[] scannedDirection = new char[4];
+
+        scanAllDirection (scannedDirection);
 
 
 
@@ -84,4 +90,22 @@ public class Searcher {
         
         return false;   //return false if for sum reason direction is invalid
     }
+
+    //Scans in all directions and keeps what was scanned, per direction, in an array
+    private void scanAllDirection (char[] scanned) {
+        int i, nCurDir;
+
+        for (i = 0; i < 4; i++) {
+            nCurDir = miner.getRotation ();
+            if (isValidDir (nCurDir))   //If miner isnt on the edge of direction to be scanned
+                scanned[nCurDir / 90] = miner.scan (grid.getGrid ());
+            else
+                scanned[nCurDir / 90] = 'L';
+            
+            miner.rotate ();
+        }
+    }
+
+
+
 }
