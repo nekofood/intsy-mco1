@@ -6,8 +6,7 @@ import java.awt.event.*;
 public class ControlView extends JFrame {
 	private JPanel panel;
 	private JButton stepButton; /* step 1 move
-								   it's either this button is disabled during play, or
-								   we make it so that pressing it will pause the action*/
+								   this button is disabled during play*/
 	private JButton playButton; //play the miner (TODO: how often should the simulation progress?)
 	private JButton pauseButton;
 	private JLabel actionCount, spacesTraversed;
@@ -15,11 +14,11 @@ public class ControlView extends JFrame {
 	ControlView() {
 		setTitle("Controls");
 		setSize(400, 200);
-		
+
 		panel = new JPanel(); //TODO: layout
-		panel.addLayout(new BoxLayout(this, BoxLayout.X_AXIS)); 
+		panel.addLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		panel.add(Box.createRigidArea(new Dimension(5, 5)));
-		
+
 		stepButton = new JButton("Step");
 		playButton = new JButton("Play");
 		pauseButton = new JButton("Pause");
