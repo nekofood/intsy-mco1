@@ -7,14 +7,16 @@ public class Controller {
 	private Grid grid;
 	private View view;
 	private ControlView cv;
-	private boolean isPlaying; //is the simulation in "play" mode?
-	private int actionCount, spacesTraversed;
+	private boolean isPlaying, //is the simulation in "play" mode?
+					gameOver;
+	private int actionCount, spacesTraversed
 
 	Controller(Grid g, View v, ControlView c) {
 		grid = g;
 		view = v;
 		cv = c;
 		isPlaying = false;
+		gameOver = false;
 		actionCount = 0;
 		spacesTraversed = 0;
 
@@ -37,6 +39,17 @@ public class Controller {
 		cv.getPlayButton().setEnabled(false);
 		cv.getPauseButton().setEnabled(false);
 		cv.getStepButton().setEnabled(false);
+	}
+
+	public void gameLoop() {
+		while (!gameOver) {
+			while (isPlaying) {
+					/* code for the agent goes here or something... */
+					Thread.sleep(700);
+			}
+			//code for pause behavior goes here
+		}
+
 	}
 
 	//IDEA: while-true loop to run the simulation in fast mode?
