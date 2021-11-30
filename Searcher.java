@@ -22,6 +22,13 @@ public class Searcher {
         cCurBlock = '\0';
     }
 
+    //A func to check if it won or lost alrdy
+    public int checkWinCon () {
+        if (cCurBlock == 'G') return 1;         //Gold - Win 
+        else if (cCurBlock == 'P') return -1;   //Pit  - Lose
+        else return 0;      //Nothing
+    }
+
     //The main searching alg will be here
     public void Search () {
         int i;  //just for any loop used here
