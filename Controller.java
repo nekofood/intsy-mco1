@@ -42,10 +42,14 @@ public class Controller {
 			switch (srcButton.getText()) {
 				case "Pause":
 					isPlaying = false;
+					v.getPlayButton().setEnabled(true);
+					v.getPauseButton().setEnabled(false);
 					v.getStepButton().setEnabled(true); //enable step button while in Pause mode
 					break;
 				case "Play":
 					isPlaying = true;
+					v.getPlayButton().setEnabled(false);
+					v.getPauseButton().setEnabled(true);
 					v.getStepButton().setEnabled(false); //disable step button while in Play mode
 					break;
 				case "Step":
