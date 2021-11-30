@@ -14,6 +14,7 @@ public class Grid {
 
 	private int goldX; //for generation purposes
 	private int goldY;
+	private int minerX, minerY;
 
 	Grid(int length) {
 		n = length;
@@ -21,18 +22,24 @@ public class Grid {
 		goldX = 0; //initialize them now for safety
 		goldY = 0;
 
+		minerX = 0;
+		minerY = 0;
+
 		grid = new char[n][n];
 
 		grid[0][0] = 'M';
 		generateThings ();
 	}
 
-	//updates the miner's position on the char grid using the miner's x,
-	//NEW: checks endgame						 ㅠㅠ							^o^
-	//returns 0 on "nothing happened", 1 on "miner fell down pit", 2 on "miner found gold"
+	//updates the miner's position on the char grid using the miner's x,y
 	public void updateMinerPosition(int x, int y) {
+		//clear previous x/y
+		grid[minerY][minerX] = '\0';
+
 		//place the new miner char
 		grid[y][x] = 'M';
+		minerY = y;
+		minerX = x;
 	}
 
 	//Console printing of board (for testing)
