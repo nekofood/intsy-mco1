@@ -30,20 +30,9 @@ public class Grid {
 	//updates the miner's position on the char grid using the miner's x,
 	//NEW: checks endgame						 ㅠㅠ							^o^
 	//returns 0 on "nothing happened", 1 on "miner fell down pit", 2 on "miner found gold"
-	public int updateMinerPosition(int x, int y) {
-		int returnValue = 0;
-
-		if (grid[y][x] == 'P')
-			returnValue = 1;
-		if (grid[y][x] == 'G')
-			returnValue = 2;
-
-		//first, clear the position of the miner char
-		grid[y][x] = '\0';
+	public void updateMinerPosition(int x, int y) {
 		//place the new miner char
 		grid[y][x] = 'M';
-
-		return returnValue;
 	}
 
 	//Console printing of board (for testing)
