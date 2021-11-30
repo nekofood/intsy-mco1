@@ -11,18 +11,12 @@ public class Grid {
 	   G = gold
 	   \0 = null/empty */
 	private char[][] grid;
-	private Miner miner;
-	private int minerX;
-	private int minerY;
 
 	private int goldX; //for generation purposes
 	private int goldY;
 
 	Grid(int length) {
 		n = length;
-		miner = new Miner(0, 0);
-		minerX = 0;
-		minerY = 0;
 
 		goldX = 0; //initialize them now for safety
 		goldY = 0;
@@ -33,42 +27,22 @@ public class Grid {
 		generateThings ();
 	}
 
-	//push the miner inbounds if it's OOB
-	private void bindMiner() {
-		if (miner.getX() >= n)
-			miner.updateX(n-1);
-		else if (miner.getX() == -1)
-			miner.updateX(0);
-
-		if (miner.getY() >= n)
-			miner.updateY(n-1);
-		else if (miner.getY() == -1)
-			miner.updateY(n-1);
-	}
-
 	//updates the miner's position on the char grid using the miner's x,
-	//NEW: checks endgame
+	//NEW: checks endgame						 ㅠㅠ							^o^
 	//returns 0 on "nothing happened", 1 on "miner fell down pit", 2 on "miner found gold"
-	public int updateMinerPosition() {
-		bindMiner(); //push the miner inbounds first
-		int x = miner.getX();
-		int y = miner.getY();
+	public int updateMinerPosition(int x, int y) {
 		int returnValue = 0;
 
-		if (grid[y][x] == 'P') {
+		if (grid[y][x] == 'P')
 			returnValue = 1;
-		}
-		if (grid[y][x] == 'G') {
+		if (grid[y][x] == 'G')
 			returnValue = 2;
-		}
 
 		//first, clear the position of the miner char
-		grid[minerY][minerX] = '\0';
+		grid[y][x] = '\0';
 		//place the new miner char
 		grid[y][x] = 'M';
-		//update minerX and minerY
-		minerX = x;
-		minerY = y;
+
 		return returnValue;
 	}
 
@@ -87,6 +61,9 @@ public class Grid {
         }
     }
 
+	public int getN () {
+		return n;
+	}
 	public char[][] getGrid () {
 		return grid;
 	}
@@ -114,8 +91,8 @@ public class Grid {
 					 position isnt empty */
 			while (grid[y][x] == 'M' || grid[y][x] != '\0' || x == goldX || y == goldY) { //prevent pit from spawning on the same y/x as gold
 				//generate random numbers from 0 to n
-				x = (int)(Math.random() * n);
-				y = (int)(Math.random() * n);
+				x = (int)(Math.random() * (n - 1));
+				y = (int)(Math.random() * (n - 1));
 			}
 
 			grid[y][x] = 'P';
@@ -140,12 +117,12 @@ public class Grid {
 			if (Math.random() > 0.5) {
 				while (grid[y][x] != '\0' || grid[y][x] == 'M') {
 					x = goldX;
-					y = (int)(Math.random() * n);
+					y = (int)(Math.random() * (n - 1));
 				}
 			}
 			else {
 				while (grid[y][x] != '\0' || grid[y][x] == 'M') {
-					x = (int)(Math.random() * n);
+					x = (int)(Math.random() * (n - 1));
 					y = goldY;
 				}
 			}
@@ -162,8 +139,8 @@ public class Grid {
 		y = 0;
 
 		while (grid[y][x] == 'M' || grid[y][x] != '\0') {
-			x = (int)(Math.random() * n);
-			y = (int)(Math.random() * n);
+			x = (int)(Math.random() * (n - 1));
+			y = (int)(Math.random() * (n - 1));
 		}
 
 		grid[y][x] = 'G';
