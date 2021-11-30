@@ -6,8 +6,10 @@ class View extends JFrame {
 	private JPanel panel;
 	private JLabel[][] viewGrid;
 	private ImageIcon minerIcon, pitIcon, goldIcon, beaconIcon;
+	private int n;
 
 	View(int dim) {
+		n = dim;
 		System.out.println("Creating a " + dim + " by " + dim + " grid");
 		panel = new JPanel(new GridLayout(dim,dim));
 		viewGrid = new JLabel[dim][dim];
@@ -46,8 +48,8 @@ class View extends JFrame {
 		}
 
 		//place the icons on the grid
-		for (i = 0; i < n; i++) {
-			for (j = 0; j < n; j++) {
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
 				switch (grid[i][j]) {
 					case 'M':
 						viewGrid[i][j].setIcon(minerIcon); break;

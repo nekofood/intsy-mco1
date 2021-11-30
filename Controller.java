@@ -30,9 +30,9 @@ public class Controller {
 			solution in time.
 		*/
 
-		cv.addListener(cview.getPlayButton(), new ControlListener);
-		cv.addListener(cview.getPauseButton(), new ControlListener);
-		cv.addListener(cview.getStepButton(), new ControlListener);
+		cv.addListener(cv.getPlayButton(), new ControlListener());
+		cv.addListener(cv.getPauseButton(), new ControlListener());
+		cv.addListener(cv.getStepButton(), new ControlListener());
 	}
 
 	public void incrementSpacesTraversed() {
@@ -51,11 +51,18 @@ public class Controller {
 			while (isPlaying) {
 					s.Search();
 					incrementSpacesTraversed();
-					Thread.sleep(700);
+					try {
+						Thread.sleep(700);
+					} catch (InterruptedException e) {
+						System.out.println("We done goofed!");
+					}
 			}
 			//code for pause behavior goes here
 			if (step >= 1) {
 				/* advance the agent one step */
+				s.Search();
+				incrementSpacesTraversed();
+				step = 0;
 			}
 		}
 
@@ -74,15 +81,15 @@ public class Controller {
 			switch (srcButton.getText()) {
 				case "Pause":
 					isPlaying = false;
-					view.getPlayButton().setEnabled(true);
-					view.getPauseButton().setEnabled(false);
-					view.getStepButton().setEnabled(true); //enable step button while in Pause mode
+					cv.getPlayButton().setEnabled(true);
+					cv.getPauseButton().setEnabled(false);
+					cv.getStepButton().setEnabled(true); //enable step button while in Pause mode
 					break;
 				case "Play":
 					isPlaying = true;
-					view.getPlayButton().setEnabled(false);
-					view.getPauseButton().setEnabled(true);
-					view.getStepButton().setEnabled(false); //disable step button while in Play mode
+					cv.getPlayButton().setEnabled(false);
+					cv.getPauseButton().setEnabled(true);
+					cv.getStepButton().setEnabled(false); //disable step button while in Play mode
 					break;
 				case "Step":
 					/* code to advance the agent one step goes here... */
