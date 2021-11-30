@@ -56,6 +56,9 @@ public class Controller {
 			//code for pause behavior goes here
 			if (step >= 1) {
 				/* advance the agent one step */
+				s.Search();
+				incrementSpacesTraversed();
+				step = 0;
 			}
 		}
 
@@ -74,15 +77,15 @@ public class Controller {
 			switch (srcButton.getText()) {
 				case "Pause":
 					isPlaying = false;
-					view.getPlayButton().setEnabled(true);
-					view.getPauseButton().setEnabled(false);
-					view.getStepButton().setEnabled(true); //enable step button while in Pause mode
+					cv.getPlayButton().setEnabled(true);
+					cv.getPauseButton().setEnabled(false);
+					cv.getStepButton().setEnabled(true); //enable step button while in Pause mode
 					break;
 				case "Play":
 					isPlaying = true;
-					view.getPlayButton().setEnabled(false);
-					view.getPauseButton().setEnabled(true);
-					view.getStepButton().setEnabled(false); //disable step button while in Play mode
+					cv.getPlayButton().setEnabled(false);
+					cv.getPauseButton().setEnabled(true);
+					cv.getStepButton().setEnabled(false); //disable step button while in Play mode
 					break;
 				case "Step":
 					/* code to advance the agent one step goes here... */
