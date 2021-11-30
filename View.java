@@ -17,7 +17,6 @@ class View extends JFrame {
 		setTitle("Miner");
 		setLayout(new BorderLayout());
 		setSize(n*16,n*16);
-		panel.setLayout(new GridLayout(n, n));
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -28,6 +27,8 @@ class View extends JFrame {
 		beaconIcon = new ImageIcon("img/beacon.png");
 		goldIcon = new ImageIcon("img/gold.png");
 
+		panel.setLayout(new GridLayout(n, n));
+		
 		for (int i = 0; i < dim; i++) { //create labels
 			for (int j = 0; j < dim; j++) {
 				viewGrid[i][j] = new JLabel();

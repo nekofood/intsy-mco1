@@ -17,5 +17,7 @@ public class Main {
 		sc = new Searcher(g, m);
 
 		c = new Controller(g, v, cv, sc);
+
+		c.gameLoop();
 	}
 }

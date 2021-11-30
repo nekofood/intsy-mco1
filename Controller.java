@@ -47,6 +47,10 @@ public class Controller {
 	}
 
 	public void gameLoop() {
+		isPlaying = false;
+		cv.getPlayButton().setEnabled(true);
+		cv.getPauseButton().setEnabled(false);
+		cv.getStepButton().setEnabled(true); //enable step button while in Pause mode
 		while (!gameOver) {
 			view.updateView(grid.getGrid());
 			while (isPlaying) {
@@ -69,12 +73,6 @@ public class Controller {
 		}
 
 	}
-
-	public void advanceStep() {
-		s.Search();
-	}
-
-	//IDEA: while-true loop to run the simulation in fast mode?
 
 	//listener for the control window
 	class ControlListener implements ActionListener {
