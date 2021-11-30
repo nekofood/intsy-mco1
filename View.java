@@ -9,7 +9,7 @@ class View extends JFrame {
 
 	View(int dim) {
 		System.out.println("Creating a " + dim + " by " + dim + " grid");
-		panel = new JPanel(new Grid); //TODO: I forgot to add a layout
+		panel = new JPanel(new GridLayout(dim,dim));
 		viewGrid = new JLabel[dim][dim];
 
 		setTitle("Miner");
