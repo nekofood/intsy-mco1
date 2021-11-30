@@ -46,11 +46,20 @@ public class Grid {
 			miner.updateY(n-1);
 	}
 
-	//updates the miner's position on the char grid using the miner's x,y
-	public void updateMinerPosition() {
+	//updates the miner's position on the char grid using the miner's x,
+	//NEW: checks endgame
+	//returns 0 on "nothing happened", 1 on "miner fell down pit", 2 on "miner found gold"
+	public int updateMinerPosition() {
 		bindMiner(); //push the miner inbounds first
 		int x = miner.getX();
 		int y = miner.getY();
+
+		if (grid[y][x] == 'P') {
+			return 1;
+		}
+		if (grid[y][x] == 'G') {
+			return 2;
+		}
 
 		//first, clear the position of the miner char
 		grid[minerY][minerX] = '\0';
@@ -59,6 +68,7 @@ public class Grid {
 		//update minerX and minerY
 		minerX = x;
 		minerY = y;
+		return 0;
 	}
 
 	//Console printing of board (for testing)

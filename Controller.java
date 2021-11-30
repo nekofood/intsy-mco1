@@ -25,18 +25,18 @@ public class Controller {
 
 	public void incrementSpacesTraversed() {
 		++spacesTraversed;
-		view.updateSpacesTraversed(spacesTraversed);
+		cv.updateSpacesTraversed(spacesTraversed);
 	}
 
 	public void incrementActionCount() {
 		++actionCount;
-		view.updateActionCount(actionCount);
+		cv.updateActionCount(actionCount);
 	}
 
 	public void endGame() {
-		view.getPlayButton().setEnabled(false);
-		view.getPauseButton().setEnabled(false);
-		view.getStepButton().setEnabled(false);
+		cv.getPlayButton().setEnabled(false);
+		cv.getPauseButton().setEnabled(false);
+		cv.getStepButton().setEnabled(false);
 	}
 
 	//IDEA: while-true loop to run the simulation in fast mode?
