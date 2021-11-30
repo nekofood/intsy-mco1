@@ -15,8 +15,11 @@ class View extends JFrame {
 		viewGrid = new JLabel[n][n];
 
 		setTitle("Miner");
-		panel.setLayout(new GridLayout(n, n));
+		setLayout(new BorderLayout());
 		setSize(n*16,n*16);
+		panel.setLayout(new GridLayout(n, n));
+		setLocationRelativeTo(null);
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		//initialize icons
@@ -32,7 +35,7 @@ class View extends JFrame {
 			}
 		}
 
-		add(panel);
+		add(panel, BorderLayout.CENTER);
 		setVisible(true);
 	}
 	//TODO: i'm not sure where the control panel should go

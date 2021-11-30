@@ -14,7 +14,8 @@ public class ControlView extends JFrame {
 	ControlView() {
 		setTitle("Controls");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(400, 200);
+		setSize(200, 100);
+		this.setLayout(new BorderLayout());
 
 		buttonPanel = new JPanel(); //TODO: layout
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
@@ -34,8 +35,8 @@ public class ControlView extends JFrame {
 		buttonPanel.add(stepButton);
 		statsPanel.add(spacesTraversed);
 
-		add(statsPanel);
-		add(buttonPanel);
+		add(statsPanel, BorderLayout.NORTH);
+		add(buttonPanel, BorderLayout.SOUTH);
 		setVisible(true);
 	}
 

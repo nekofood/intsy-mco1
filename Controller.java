@@ -48,7 +48,7 @@ public class Controller {
 
 	public void gameLoop() {
 		while (!gameOver) {
-			view.updateView(grid);
+			view.updateView(grid.getGrid());
 			while (isPlaying) {
 					s.Search();
 					incrementSpacesTraversed();
