@@ -7,7 +7,7 @@ public class Searcher {
                                                 direction of move will be stored*/
     private ArrayList<Integer> randomMoveSet;   //this one for the randies
     private int nSmartCount;    //Move counter for smart search
-    private int nRandCount;     //Move counter for rand search   ||   idk y i separated them tbh
+    private int nRandCount;     //Move counter for rand search
     private int n;
     private char cCurBlock;     //Current block Miner is on
     private int nCurBrain;      //Current agent. || 1 = Smart, 0 = Trying its best
