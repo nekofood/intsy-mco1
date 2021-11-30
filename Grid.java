@@ -31,12 +31,12 @@ public class Grid {
 	private void bindMiner() {
 		if (miner.getX() >= n)
 			miner.updateX(n-1);
-		else if (miner.getX() = -1)
+		else if (miner.getX() == -1)
 			miner.updateX(0);
 
 		if (miner.getY() >= n)
 			miner.updateY(n-1);
-		else if (miner.getY() = -1)
+		else if (miner.getY() == -1)
 			miner.updateY(n-1);
 	}
 
