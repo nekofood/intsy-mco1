@@ -72,7 +72,7 @@ public class Grid {
 				else
 					System.out.print(.);
 			}
-            System.out.println("\n");
+            System.out.print("\n");
         }
     }
 
