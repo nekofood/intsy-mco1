@@ -9,7 +9,8 @@ public class Controller {
 	private ControlView cv;
 	private boolean isPlaying, //is the simulation in "play" mode?
 					gameOver;
-	private int actionCount, spacesTraversed
+	private int actionCount, spacesTraversed;
+	private int step; //worst idea ever
 
 	Controller(Grid g, View v, ControlView c) {
 		grid = g;
@@ -19,6 +20,14 @@ public class Controller {
 		gameOver = false;
 		actionCount = 0;
 		spacesTraversed = 0;
+
+		step = 0;
+		/*
+			Okay so it goes like this: when you press the step button the "step"
+			variable increments and that's how the main loop knows when to advance
+			the simulation one step. Hopefully we can come up with a better
+			solution in time.
+		*/
 
 		cv.addListener(cview.getPlayButton(), new ControlListener);
 		cv.addListener(cview.getPauseButton(), new ControlListener);
