@@ -41,7 +41,7 @@ public class Miner {
 				for(int i = this.getX(), j = this.getY(); j <= 0; j--) {
 					if(grid[i][j] == 'P') {
 						System.out.print("A pit is nearby");
-						return 'P';	//Once it detects
+						return 'P';	//Once it detects return it insta so it don gotta go through the whole thing
 					}
 					else if(grid[i][j] == 'B') {
 						System.out.print("A beacon is nearby");
