@@ -14,11 +14,10 @@ public class ControlView extends JFrame {
 
 	ControlView() {
 		setTitle("Controls");
-
+		setSize(400, 200);
+		
 		panel = new JPanel(); //TODO: layout
-		panel.addLayout(new BoxLayout());
-
-		panel.SetBounds(0, 100, 200, 400);
+		panel.addLayout(new BoxLayout(this, BoxLayout.X_AXIS)); //was thinking of placing the controls at the bottom of the screen? wdyt?
 		stepButton = new JButton("Step");
 		playButton = new JButton("Play");
 		pauseButton = new JButton("Pause");
