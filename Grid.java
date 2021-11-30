@@ -94,7 +94,7 @@ public class Grid {
 		for (i = 0; i < pitCount; i++) {
 			/* while position isnt the miner's or
 					 position isnt empty */
-			while (grid[y][x] != '\0' && x != goldX && y != goldY) { //prevent pit from spawning on the same y/x as gold
+			while ((grid[y][x] == 'M' || grid[y][x] != '\0') || (x != goldX && y != goldY)) { //prevent pit from spawning on the same y/x as gold
 				//generate random numbers from 0 to n
 				x = (int)(Math.random() * n);
 				y = (int)(Math.random() * n);
@@ -120,13 +120,13 @@ public class Grid {
 			//determine if we're gonna use gold x or gold Y for this one
 			// n>0.5 = gold x
 			if (Math.random() > 0.5) {
-				while (grid[y][x] != '\0') {
+				while (grid[y][x] != '\0' || grid[y][x] == 'M') {
 					x = goldX;
 					y = (int)(Math.random() * n);
 				}
 			}
 			else {
-				while (grid[y][x] != '\0') {
+				while (grid[y][x] != '\0' || grid[y][x] == 'M') {
 					x = (int)(Math.random() * n);
 					y = goldY;
 				}
