@@ -53,12 +53,13 @@ public class Grid {
 		bindMiner(); //push the miner inbounds first
 		int x = miner.getX();
 		int y = miner.getY();
+		int returnValue = 0;
 
 		if (grid[y][x] == 'P') {
-			return 1;
+			returnValue = 1;
 		}
 		if (grid[y][x] == 'G') {
-			return 2;
+			returnValue = 2;
 		}
 
 		//first, clear the position of the miner char
@@ -68,7 +69,7 @@ public class Grid {
 		//update minerX and minerY
 		minerX = x;
 		minerY = y;
-		return 0;
+		return returnValue;
 	}
 
 	//Console printing of board (for testing)
