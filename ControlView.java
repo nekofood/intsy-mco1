@@ -22,6 +22,7 @@ public class ControlView extends JFrame {
 		stepButton = new JButton("Step");
 		playButton = new JButton("Play");
 		pauseButton = new JButton("Pause");
+		pauseButton.setEnabled(false); //the simulation starts in "pause" mode, so we will disable this
 
 		actionCount = new JLabel("Actions taken: 0");
 		spacesTraversed = new JLabel("Spaces traversed: 0");
