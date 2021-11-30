@@ -10,6 +10,7 @@ public class Searcher {
     private int nRandCount;     //Move counter for rand search   ||   idk y i separated them tbh
     private int n;
     private char cCurBlock;     //Current block Miner is on
+    private int nCurBrain;      //Current agent. || 1 = Smart, 0 = Trying its best
 
     Searcher (Grid g, Miner m) {
         grid = g;
@@ -20,6 +21,7 @@ public class Searcher {
         nSmartCount = 0;
         nRandCount = 0;
         cCurBlock = '\0';
+        nCurBrain = 0;
     }
 
     //A func to check if it won or lost alrdy
@@ -29,8 +31,19 @@ public class Searcher {
         else return 0;      //Nothing
     }
 
-    //The main searching alg will be here
+    //Func to switch agents. include which brain when calling (legend on top)
+    public void switchAgent (int brain) {
+        nCurBrain = brain;
+    }
+
+    //Picks which search depending on current brain level
     public void Search () {
+        if (nCurBrain == 1) smartSearch ();
+        else randomSearch ();
+    }
+
+    //The main searching alg will be here
+    private void smartSearch () {
         int i;  //just for any loop used here
         int nDirection = miner.getRotation ();
         /*  This where it keeps tabs on scan result in what direction. [0] right, [1] top ...
@@ -48,7 +61,7 @@ public class Searcher {
     }
 
 	//The "random action" alg goes here
-	public void randomSearch() {
+	private void randomSearch () {
         int[] directions = {0, 90, 180, 270};
         int nPick, nDirection;
         boolean bValidMove = false;     
