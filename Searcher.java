@@ -42,6 +42,22 @@ public class Searcher {
         else randomSearch ();
     }
 
+    public int getSmartCount () {
+        return nSmartCount;
+    }
+
+    public int getRandCount () {
+        return nRandCount;
+    }
+
+    public Grid getGrid () {
+        return grid;
+    }
+
+    public Miner getMiner () {
+        return miner;
+    }
+
     //The main searching alg will be here
     private void smartSearch () {
         int i;  //just for any loop used here
@@ -60,7 +76,7 @@ public class Searcher {
         nSmartCount++;
     }
 
-	//The "random action" alg goes here
+    //The "random action" alg goes here
 	private void randomSearch () {
         int[] directions = {0, 90, 180, 270};
         int nPick, nDirection;
@@ -86,21 +102,6 @@ public class Searcher {
         nRandCount++;
 	}
 
-    public int getSmartCount () {
-        return nSmartCount;
-    }
-
-    public int getRandCount () {
-        return nRandCount;
-    }
-
-    public Grid getGrid () {
-        return grid;
-    }
-
-    public Miner getMiner () {
-        return miner;
-    }
     //This adds the move done to the list
     private void addMove (ArrayList<Integer> moveSet, int nDirection) {
         moveSet.add (nDirection);
@@ -145,5 +146,13 @@ public class Searcher {
     }
 
 
+    //TESTING FUNCS HERE ========================================
+    public void printList () {
+        ArrayList<Integer> toPrint;
 
+        if (nCurBrain == 1) toPrint = smartMoveSet;
+        else    toPrint = randomMoveSet;
+
+        for (int i : toPrint) System.out.print (i + ",   ");
+    }
 }
