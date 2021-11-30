@@ -14,16 +14,12 @@ public class Grid {
 
 	private int goldX; //for generation purposes
 	private int goldY;
-	private int minerX, minerY;
 
 	Grid(int length) {
 		n = length;
 
 		goldX = 0; //initialize them now for safety
 		goldY = 0;
-
-		minerX = 0;
-		minerY = 0;
 
 		grid = new char[n][n];
 
@@ -33,13 +29,8 @@ public class Grid {
 
 	//updates the miner's position on the char grid using the miner's x,y
 	public void updateMinerPosition(int x, int y) {
-		//clear previous x/y
-		grid[minerY][minerX] = '\0';
-
 		//place the new miner char
 		grid[y][x] = 'M';
-		minerY = y;
-		minerX = x;
 	}
 
 	//Console printing of board (for testing)
