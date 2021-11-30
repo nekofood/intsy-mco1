@@ -5,7 +5,7 @@ public class GridDriver {
 
     public static void main (String[] args) {
         Miner mi = new Miner(0, 0);
-        Grid board = new Grid (8, mi);
+        Grid board = new Grid (8);
 
         board.printGrid ();
     }
