@@ -57,8 +57,15 @@ public class Controller {
 					Thread.sleep(700);
 			}
 			//code for pause behavior goes here
+			if (step >= 1) {
+				/* advance the agent one step */
+			}
 		}
 
+	}
+
+	public void advanceStep() {
+		//advance step code goes here
 	}
 
 	//IDEA: while-true loop to run the simulation in fast mode?
@@ -82,6 +89,7 @@ public class Controller {
 					break;
 				case "Step":
 					/* code to advance the agent one step goes here... */
+					++step;
 					break;
 			}
 		}
