@@ -14,7 +14,7 @@ public class Miner {
 	}
 
 	//Move forward
-	public void forward(int n) {
+	public void forward() {
 		switch (rotation) {
 			case 0:
 				++x; break;
@@ -31,6 +31,10 @@ public class Miner {
 		}
 	}
 
+	//Checks the current block
+	public char scanCurrent (char[][] grid) {
+		return grid[this.y][this.x];
+	}
 
     // allows the miner to scan mining area on his current front, returns the nearest object in his vicinity
     public char scan (char[][] grid) {
