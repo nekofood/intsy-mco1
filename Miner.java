@@ -10,7 +10,7 @@ public class Miner {
 
 	//Rotate counter-clockwise
 	public void rotate() {
-		rotation = (rotation+90)%360;
+		rotation = (rotation + 90) % 360;
 	}
 
 	//Move forward
@@ -52,15 +52,12 @@ public class Miner {
 						return 'B';
 					}
 					else if(grid[i][j] == 'G') {
-						System.out.print("A pot of is nearby");
+						System.out.print("A pot of gold is nearby");
 						return 'G';
 					}
-					else {
-						System.out.print("Nothing is nearby");
-						return '\0';
-					}
 				}
-				break;
+				System.out.print("Nothing is nearby");
+				return '\0';
 
 			case 90:
 				for(int i = this.getX(), j = this.getY(); j <= n; j++){
@@ -73,15 +70,12 @@ public class Miner {
 						return 'B';
 					}
 					else if(grid[i][j] == 'G') {
-						System.out.print("A pot of is nearby");
+						System.out.print("A pot of gold is nearby");
 						return 'G';
 					}
-					else {
-						System.out.print("Nothing is nearby");
-						return '\0';
-					}
 				}
-				break;
+				System.out.print("Nothing is nearby");
+				return '\0';
 
 			case 180:
 				for(int i = this.getX(), j = this.getY(); i >= 0; i--){
@@ -94,15 +88,12 @@ public class Miner {
 						return 'B';
 					}
 					else if(grid[i][j] == 'G') {
-						System.out.print("A pot of is nearby");
+						System.out.print("A pot of gold is nearby");
 						return 'G';
 					}
-					else {
-						System.out.print("Nothing is nearby");
-						return '\0';
-					}
 				}
-				break;
+				System.out.print("Nothing is nearby");
+				return '\0';
 
 			case 0:
 				for(int i = this.getX(), j = this.getY(); i <= n; i++){
@@ -115,15 +106,12 @@ public class Miner {
 						return 'B';
 					}
 					else if(grid[i][j] == 'G') {
-						System.out.print("A pot of is nearby");
+						System.out.print("A pot of gold is nearby");
 						return 'G';
 					}
-					else {
-						System.out.print("Nothing is nearby");
-						return '\0';
-					}
 				}
-				break;
+				System.out.print("Nothing is nearby");
+				return '\0';
 
 			default:
 				System.out.println("Invalid direction!");
