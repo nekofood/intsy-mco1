@@ -9,6 +9,7 @@ public class Searcher {
     private int nSmartCount;    //Move counter for smart search
     private int nRandCount;     //Move counter for rand search   ||   idk y i separated them tbh
     private int n;
+    private char cCurBlock;     //Current block Miner is on
 
     Searcher (Grid g, Miner m) {
         grid = g;
@@ -18,6 +19,7 @@ public class Searcher {
         randomMoveSet = new ArrayList<Integer> ();
         nSmartCount = 0;
         nRandCount = 0;
+        cCurBlock = '\0';
     }
 
     //The main searching alg will be here
@@ -45,7 +47,7 @@ public class Searcher {
         boolean bValidMove = false;     
 
         do {
-            nPick = (int)(Math.random () * 4) - 1;
+            nPick = (int)(Math.random () * 4);
             bValidMove = isValidDir (directions[nPick]);    //Checks if chosen direction is valid before proceeding
         } while (!bValidMove);
 
@@ -54,7 +56,11 @@ public class Searcher {
         while (nDirection != miner.getRotation())   //While miner isnt facing the direction
             miner.rotate ();
         
+        vacateCurrentBlock ();  //Return block's original value before moving
+
         miner.forward ();
+        cCurBlock = miner.scanCurrent(grid.getGrid ()); //Gets value of current block to be used in vacateCurrentBlock ()
+
         grid.updateMinerPosition (miner.getX (), miner.getY ());
         addMove (randomMoveSet, nDirection);
         nRandCount++;
@@ -68,6 +74,13 @@ public class Searcher {
         return nRandCount;
     }
 
+    public Grid getGrid () {
+        return grid;
+    }
+
+    public Miner getMiner () {
+        return miner;
+    }
     //This adds the move done to the list
     private void addMove (ArrayList<Integer> moveSet, int nDirection) {
         moveSet.add (nDirection);
@@ -79,13 +92,13 @@ public class Searcher {
             if (miner.getX () == n - 1) return false;
             else return true;
         else if (dir == 90)     //Up
-            if (miner.getY () == n - 1) return false;
+            if (miner.getY () == 0) return false;
             else return true;
         else if (dir == 180)    //Left
             if (miner.getX () == 0) return false;
             else return true;
         else if (dir == 270)    //Down
-            if (miner.getY () == 0) return false;
+            if (miner.getY () == n - 1) return false;
             else return true;
         
         return false;   //return false if for sum reason direction is invalid
@@ -104,6 +117,11 @@ public class Searcher {
             
             miner.rotate ();
         }
+    }
+
+    //Return block to its original state
+    private void vacateCurrentBlock () {
+        grid.getGrid () [miner.getY()][miner.getX()] = cCurBlock;
     }
 
 
