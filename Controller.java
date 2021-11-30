@@ -9,16 +9,17 @@ public class Controller {
 	private ControlView cv;
 	private boolean isPlaying, //is the simulation in "play" mode?
 					gameOver;
-	private int actionCount, spacesTraversed;
+	private int spacesTraversed;
 	private int step; //worst idea ever
+	private Searcher s;
 
-	Controller(Grid g, View v, ControlView c) {
+	Controller(Grid g, View v, ControlView c, Searcher sc) {
 		grid = g;
 		view = v;
 		cv = c;
+		s = sc;
 		isPlaying = false;
 		gameOver = false;
-		actionCount = 0;
 		spacesTraversed = 0;
 
 		step = 0;
@@ -39,11 +40,6 @@ public class Controller {
 		cv.updateSpacesTraversed(spacesTraversed);
 	}
 
-	public void incrementActionCount() {
-		++actionCount;
-		cv.updateActionCount(actionCount);
-	}
-
 	public void endGame() {
 		cv.getPlayButton().setEnabled(false);
 		cv.getPauseButton().setEnabled(false);
@@ -53,7 +49,8 @@ public class Controller {
 	public void gameLoop() {
 		while (!gameOver) {
 			while (isPlaying) {
-					/* code for the agent goes here or something... */
+					s.Search();
+					incrementSpacesTraversed();
 					Thread.sleep(700);
 			}
 			//code for pause behavior goes here
@@ -65,7 +62,7 @@ public class Controller {
 	}
 
 	public void advanceStep() {
-		//advance step code goes here
+		s.Search();
 	}
 
 	//IDEA: while-true loop to run the simulation in fast mode?

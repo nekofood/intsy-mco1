@@ -9,7 +9,7 @@ public class ControlView extends JFrame {
 								   this button is disabled during play*/
 	private JButton playButton; //play the miner (TODO: how often should the simulation progress?)
 	private JButton pauseButton;
-	private JLabel actionCount, spacesTraversed;
+	private JLabel spacesTraversed;
 
 	ControlView() {
 		setTitle("Controls");
@@ -26,13 +26,11 @@ public class ControlView extends JFrame {
 		pauseButton = new JButton("Pause");
 		pauseButton.setEnabled(false); //the simulation starts in "pause" mode, so we will disable this
 
-		actionCount = new JLabel("Actions taken: 0");
 		spacesTraversed = new JLabel("Spaces traversed: 0");
 
 		buttonPanel.add(pauseButton);
 		buttonPanel.add(playButton);
 		buttonPanel.add(stepButton);
-		statsPanel.add(actionCount);
 		statsPanel.add(spacesTraversed);
 
 		add(statsPanel);
@@ -42,10 +40,6 @@ public class ControlView extends JFrame {
 
 	public void updateSpacesTraversed(int stat) {
 		spacesTraversed.setText("Spaces traversed: " + stat);
-	}
-
-	public void updateActionCount(int stat) {
-		actionCount.setText("Actions taken: " + stat);
 	}
 
 	public void addListener(JButton jb, ActionListener al) {
