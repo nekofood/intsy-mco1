@@ -73,6 +73,10 @@ public class Grid {
         }
     }
 
+	public char[][] getGrid () {
+		return grid;
+	}
+
 	//TODO: "distribute" method to place the things on the grid
 	private void generateThings() {
 		generateGold ();
