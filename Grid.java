@@ -70,7 +70,7 @@ public class Grid {
 				if (grid[i][j] != '\0')
                 	System.out.print(grid[i][j]);
 				else
-					System.out.print(.);
+					System.out.print(".");
 			}
             System.out.print("\n");
         }
