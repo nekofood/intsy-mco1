@@ -15,11 +15,17 @@ public class Grid {
 	private int minerX;
 	private int minerY;
 
+	private int goldX; //for generation purposes
+	private int goldY;
+
 	Grid(int length) {
 		n = length;
 		miner = new Miner(0, 0);
 		minerX = 0;
 		minerY = 0;
+
+		goldX = 0; //initialize them now for safety
+		goldY = 0;
 
 		grid = new char[n][n];
 
@@ -69,9 +75,9 @@ public class Grid {
 
 	//TODO: "distribute" method to place the things on the grid
 	private void generateThings() {
-		generatePit ();
-		generateBeacon ();
 		generateGold ();
+		generateBeacon ();
+		generatePit ();
 	}
 
 	//Generates pit/s into the board
@@ -81,19 +87,20 @@ public class Grid {
 
 		pitCount = (int)(n * 0.25);	//number of pits
 
-		x = y = 0;
+		x = 0;
+		y = 0;
 
 		//Loops on how many pits are on the grid
 		for (i = 0; i < pitCount; i++) {
 			/* while position isnt the miner's or
 					 position isnt empty */
-			while (grid[x][y] == 'M' || grid[x][y] != '\0') {
+			while (grid[y][x] != '\0' && x != goldX && y != goldY) { //prevent pit from spawning on the same y/x as gold
 				//generate random numbers from 0 to n
 				x = (int)(Math.random() * n);
 				y = (int)(Math.random() * n);
 			}
 
-			grid[x][y] = 'P';
+			grid[y][x] = 'P';
 		}
 	}
 
@@ -105,16 +112,27 @@ public class Grid {
 		beaconCount = (int)(n * 0.1);	//number of beacon/s
 		if (beaconCount < 1) beaconCount = 1; //Always at least one beacon
 
-		x = y = 0;
+		x = 0;
+		y = 0;
 
 		//Loops how many beacon/s are on the grid
 		for (i = 0; i < beaconCount; i++) {
-			while (grid[x][y] == 'M' || grid[x][y] != '\0') {
-				x = (int)(Math.random() * n);
-				y = (int)(Math.random() * n);
+			//determine if we're gonna use gold x or gold Y for this one
+			// n>0.5 = gold x
+			if (Math.random() > 0.5) {
+				while (grid[y][x] != '\0') {
+					x = goldX;
+					y = (int)(Math.random() * n);
+				}
+			}
+			else {
+				while (grid[y][x] != '\0') {
+					x = (int)(Math.random() * n);
+					y = goldY;
+				}
 			}
 
-			grid[x][y] = 'B';
+			grid[y][x] = 'B';
 		}
 	}
 
@@ -122,14 +140,17 @@ public class Grid {
 	private void generateGold () {
 		int x, y;
 
-		x = y = 0;
+		x = 0;
+		y = 0;
 
-		while (grid[x][y] == 'M' || grid[x][y] != '\0') {
+		while (grid[y][x] == 'M' || grid[y][x] != '\0') {
 			x = (int)(Math.random() * n);
 			y = (int)(Math.random() * n);
 		}
 
-		grid[x][y] = 'G';
+		grid[y][x] = 'G';
+		goldX = x;
+		goldY = y;
 	}
 
 
