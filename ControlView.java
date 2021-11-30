@@ -13,13 +13,14 @@ public class ControlView extends JFrame {
 
 	ControlView() {
 		setTitle("Controls");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(400, 200);
 
 		buttonPanel = new JPanel(); //TODO: layout
-		buttonPanel.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 
 		statsPanel = new JPanel();
-		statsPanel.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		statsPanel.setLayout(new BoxLayout(statsPanel, BoxLayout.Y_AXIS));
 
 		stepButton = new JButton("Step");
 		playButton = new JButton("Play");

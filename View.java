@@ -11,12 +11,12 @@ class View extends JFrame {
 	View(int dim) {
 		n = dim;
 		System.out.println("Creating a " + dim + " by " + dim + " grid");
-		panel = new JPanel(new GridLayout(dim,dim));
-		viewGrid = new JLabel[dim][dim];
+		panel = new JPanel();
+		viewGrid = new JLabel[n][n];
 
 		setTitle("Miner");
-		panel.setLayout(new GridLayout(dim, dim));
-		setSize(dim*16,dim*16);
+		panel.setLayout(new GridLayout(n, n));
+		setSize(n*16,n*16);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		//initialize icons
