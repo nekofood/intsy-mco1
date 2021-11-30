@@ -19,6 +19,7 @@ public class Searcher {
 
     }
 
+    //This adds the move done to the list
     private void addMove (int nDirection) {
         moveSet.add (nDirection);
     }
