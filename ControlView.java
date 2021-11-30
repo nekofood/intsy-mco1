@@ -16,10 +16,10 @@ public class ControlView extends JFrame {
 		setSize(400, 200);
 
 		buttonPanel = new JPanel(); //TODO: layout
-		buttonPanel.addLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+		buttonPanel.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
 		statsPanel = new JPanel();
-		statsPanel.addLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		statsPanel.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
 		stepButton = new JButton("Step");
 		playButton = new JButton("Play");

@@ -30,9 +30,9 @@ public class Controller {
 			solution in time.
 		*/
 
-		cv.addListener(cview.getPlayButton(), new ControlListener);
-		cv.addListener(cview.getPauseButton(), new ControlListener);
-		cv.addListener(cview.getStepButton(), new ControlListener);
+		cv.addListener(cv.getPlayButton(), new ControlListener());
+		cv.addListener(cv.getPauseButton(), new ControlListener());
+		cv.addListener(cv.getStepButton(), new ControlListener());
 	}
 
 	public void incrementSpacesTraversed() {
@@ -51,7 +51,11 @@ public class Controller {
 			while (isPlaying) {
 					s.Search();
 					incrementSpacesTraversed();
-					Thread.sleep(700);
+					try {
+						Thread.sleep(700);
+					} catch (InterruptedException e) {
+						System.out.println("We done goofed!");
+					}
 			}
 			//code for pause behavior goes here
 			if (step >= 1) {
