@@ -16,7 +16,7 @@ public class ControlView extends JFrame {
 		setTitle("Controls");
 
 		panel = new JPanel(); //TODO: layout
-		panel.addLayout(new BoxLayout());
+		panel.addLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
 		panel.SetBounds(0, 100, 200, 400);
 		stepButton = new JButton("Step");
