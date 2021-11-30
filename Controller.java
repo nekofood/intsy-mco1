@@ -18,19 +18,25 @@ public class Controller {
 		actionCount = 0;
 		spacesTraversed = 0;
 
-		cv.addListener(cv.getPlayButton(), new ControlListener);
-		cv.addListener(cv.getPauseButton(), new ControlListener);
-		cv.addListener(cv.getStepButton(), new ControlListener);
+		cv.addListener(cview.getPlayButton(), new ControlListener);
+		cv.addListener(cview.getPauseButton(), new ControlListener);
+		cv.addListener(cview.getStepButton(), new ControlListener);
 	}
 
 	public void incrementSpacesTraversed() {
 		++spacesTraversed;
-		v.updateSpacesTraversed(spacesTraversed);
+		view.updateSpacesTraversed(spacesTraversed);
 	}
 
 	public void incrementActionCount() {
 		++actionCount;
-		v.updateActionCount(actionCount);
+		view.updateActionCount(actionCount);
+	}
+
+	public void endGame() {
+		view.getPlayButton().setEnabled(false);
+		view.getPauseButton().setEnabled(false);
+		view.getStepButton().setEnabled(false);
 	}
 
 	//IDEA: while-true loop to run the simulation in fast mode?
@@ -42,15 +48,15 @@ public class Controller {
 			switch (srcButton.getText()) {
 				case "Pause":
 					isPlaying = false;
-					v.getPlayButton().setEnabled(true);
-					v.getPauseButton().setEnabled(false);
-					v.getStepButton().setEnabled(true); //enable step button while in Pause mode
+					view.getPlayButton().setEnabled(true);
+					view.getPauseButton().setEnabled(false);
+					view.getStepButton().setEnabled(true); //enable step button while in Pause mode
 					break;
 				case "Play":
 					isPlaying = true;
-					v.getPlayButton().setEnabled(false);
-					v.getPauseButton().setEnabled(true);
-					v.getStepButton().setEnabled(false); //disable step button while in Play mode
+					view.getPlayButton().setEnabled(false);
+					view.getPauseButton().setEnabled(true);
+					view.getStepButton().setEnabled(false); //disable step button while in Play mode
 					break;
 				case "Step":
 					/* code to advance the agent one step goes here... */
