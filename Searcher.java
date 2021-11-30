@@ -19,6 +19,11 @@ public class Searcher {
 
     }
 
+	//The "random action" alg goes here
+	public void randomSearch() {
+
+	}
+
     //This adds the move done to the list
     private void addMove (int nDirection) {
         moveSet.add (nDirection);
