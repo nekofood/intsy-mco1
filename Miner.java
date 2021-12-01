@@ -42,7 +42,7 @@ public class Miner {
 
         switch(rotation) {
 			case 90:	//Downward
-				for(x = this.getX(), y = this.getY() + 1; y < n; y++) {
+				for (x = this.getX(), y = this.getY() + 1; y < n; y++) {
 					if (grid[y][x] == 'P')
 						return 'P';	//Once it detects return it insta so it don gotta go through the whole thing
 					else if (grid[y][x] == 'B')
@@ -53,7 +53,7 @@ public class Miner {
 				return '\0';
 
 			case 180:	//Leftward
-				for(x = this.getX() - 1, y = this.getY(); x >= 0; x--) {
+				for (x = this.getX() - 1, y = this.getY(); x >= 0; x--) {
 					if (grid[y][x] == 'P')
 						return 'P';
 					else if (grid[y][x] == 'B')
@@ -64,7 +64,7 @@ public class Miner {
 				return '\0';
 
 			case 270:	//Upward
-				for(x = this.getX(), y = this.getY() - 1; y >= 0; y--) {
+				for (x = this.getX(), y = this.getY() - 1; y >= 0; y--) {
 					if (grid[y][x] == 'P')
 						return 'P';
 					else if (grid[y][x] == 'B')
@@ -75,7 +75,7 @@ public class Miner {
 				return '\0';
 
 			case 0:	//Rightward
-				for(x = this.getX() + 1, y = this.getY(); x < n; x++) {
+				for (x = this.getX() + 1, y = this.getY(); x < n; x++) {
 					if (grid[y][x] == 'P')
 						return 'P';
 					else if (grid[y][x] == 'B')
