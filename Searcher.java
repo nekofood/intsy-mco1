@@ -152,10 +152,11 @@ public class Searcher {
         int i;
         int nCurInd = 1;
         int nCurMaxInd = 0;
-        for (i = 1; i <= vals.length; i++, nCurInd++)
+        for (i = 1; i <= vals.length; i++, nCurInd++) {
             nCurInd %= 4;
             if (vals[nCurInd] >= vals[nCurMaxInd])
                 nCurMaxInd = nCurInd;
+        }
 
         return nCurMaxInd;
     }
@@ -204,4 +205,6 @@ public class Searcher {
         char[] directions = {'R', 'D', 'L', 'U'};
         for (int i : moves) System.out.print (directions[i / 90] + ",  ");
     }
+
+
 }
