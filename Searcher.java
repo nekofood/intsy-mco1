@@ -200,8 +200,8 @@ public class Searcher {
 
 
     //TESTING FUNCS HERE ========================================
-    public void printList () {
-
-        for (int i : moves) System.out.print (i + ",   ");
+    public void printDirections () {
+        char[] directions = {'R', 'D', 'L', 'U'};
+        for (int i : moves) System.out.print (directions[i / 90] + ",  ");
     }
 }
