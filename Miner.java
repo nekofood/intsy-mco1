@@ -1,20 +1,26 @@
 public class Miner {
 	private int rotation; //0deg = right, 90deg = down, and so on
 	private int x,y;
+	private int rotCount, moveCount, scanCount;
 
 	Miner(int sx, int sy) {
 		rotation = 0;
 		x = sx;
 		y = sy;
+		rotCount = 0;
+		moveCount = 0;
+		scanCount = 0;
 	}
 
 	//Rotate counter-clockwise
 	public void rotate() {
 		rotation = (rotation + 90) % 360;
+		++rotCount;
 	}
 
 	//Move forward
 	public void forward() {
+		++moveCount;
 		switch (rotation) {
 			case 0:
 				++x; break;
@@ -37,6 +43,7 @@ public class Miner {
 
     // allows the miner to scan mining area on his current front, returns the nearest object in his vicinity
     public char scan (char[][] grid) {
+		++scanCount;
 		int n = grid.length;
 		int x, y;
 
@@ -111,5 +118,15 @@ public class Miner {
 
 	public int getRotation() {
 		return rotation;
+	}
+
+	public int getRotCount() {
+		return rotCount;
+	}
+	public int getMoveCount() {
+		return moveCount;
+	}
+	public int getScanCount() {
+		return scanCount;
 	}
 }

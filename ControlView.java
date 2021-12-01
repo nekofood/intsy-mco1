@@ -9,12 +9,12 @@ public class ControlView extends JFrame {
 								   this button is disabled during play*/
 	private JButton playButton; //play the miner (TODO: how often should the simulation progress?)
 	private JButton pauseButton;
-	private JLabel spacesTraversed;
+	private JLabel spacesTraversed, moveCount, rotCount, scanCount;
 
 	ControlView() {
 		setTitle("Controls");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(200, 100);
+		setSize(200, 400);
 		this.setLayout(new BorderLayout());
 
 		buttonPanel = new JPanel(); //TODO: layout
@@ -29,19 +29,28 @@ public class ControlView extends JFrame {
 		pauseButton.setEnabled(false); //the simulation starts in "pause" mode, so we will disable this
 
 		spacesTraversed = new JLabel("Spaces traversed: 0");
+		moveCount = new JLabel("Forward actions taken: 0");
+		rotCount = new JLabel("Rotations done: 0");
+		scanCount = new JLabel("Scans: 0");
 
 		buttonPanel.add(pauseButton);
 		buttonPanel.add(playButton);
 		buttonPanel.add(stepButton);
 		statsPanel.add(spacesTraversed);
+		statsPanel.add(moveCount);
+		statsPanel.add(rotCount);
+		statsPanel.add(scanCount);
 
 		add(statsPanel, BorderLayout.NORTH);
 		add(buttonPanel, BorderLayout.SOUTH);
 		setVisible(true);
 	}
 
-	public void updateSpacesTraversed(int stat) {
+	public void updateStats(int stat, Miner m) {
 		spacesTraversed.setText("Spaces traversed: " + stat);
+		moveCount.setText("Forward actions taken: " + m.getMoveCount());
+		rotCount.setText("Rotations done: " + m.getRotCount());
+		scanCount.setText("Scans: " + m.getScanCount());
 	}
 
 	public void addListener(JButton jb, ActionListener al) {

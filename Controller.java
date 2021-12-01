@@ -36,7 +36,7 @@ public class Controller {
 
 	public void incrementSpacesTraversed() {
 		++spacesTraversed;
-		cv.updateSpacesTraversed(spacesTraversed);
+		cv.updateStats(spacesTraversed, s.getMiner());
 	}
 
 	public void endGame() {
