@@ -48,9 +48,10 @@ public class Controller {
 	public void gameLoop() {
 		view.updateView(grid.getGrid(), s.getMiner().getRotation());
 		isPlaying = false;
+		//put the buttons in "pause mode"
 		cv.getPlayButton().setEnabled(true);
 		cv.getPauseButton().setEnabled(false);
-		cv.getStepButton().setEnabled(true); //enable step button while in Pause mode
+		cv.getStepButton().setEnabled(true);
 		while (s.checkWinCon() == 0) {
 			//bandaid thing that lets the thread wait for play and stuff
 			int var = 1;
