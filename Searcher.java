@@ -3,11 +3,8 @@ import java.util.*;
 public class Searcher {
     private Grid grid;
     private Miner miner;
-    private ArrayList<Integer> smartMoveSet; /* where the smart moves will be stored
-                                                direction of move will be stored*/
-    private ArrayList<Integer> randomMoveSet;   //this one for the randies
-    private int nSmartCount;    //Move counter for smart search
-    private int nRandCount;     //Move counter for rand search
+    private ArrayList<Integer> moves; // where the direction of moves will be store
+    private int nMoveCount;
     private int n;
     private char cCurBlock;     //Current block Miner is on
     private boolean bSmart;      //Current agent. || T = Smart, F = Mentally inferior
@@ -18,10 +15,8 @@ public class Searcher {
         grid = g;
         miner = m;
         n = grid.getN ();
-        smartMoveSet = new ArrayList<Integer> ();
-        randomMoveSet = new ArrayList<Integer> ();
-        nSmartCount = 0;
-        nRandCount = 0;
+        moves = new ArrayList<Integer> ();
+        nMoveCount = 0;
         cCurBlock = '\0';
         bSmart = false;
         bFoundGoldDir = false;
@@ -46,16 +41,8 @@ public class Searcher {
         else randomSearch ();
     }
 
-    public int getSmartCount () {
-        return nSmartCount;
-    }
-
-    public int getRandCount () {
-        return nRandCount;
-    }
-
-    public int getTotalCount () {
-        return nSmartCount + nRandCount;
+    public int getMoveCount () {
+        return nMoveCount;
     }
 
     public Grid getGrid () {
@@ -86,7 +73,6 @@ public class Searcher {
         //}
 
         moveMiner ();
-        nSmartCount++;
     }
 
     //The "random action" alg goes here
@@ -106,21 +92,19 @@ public class Searcher {
             miner.rotate ();
         
         moveMiner ();
-        nRandCount++;
 	}
 
+    //Code for moving the miner
     private void moveMiner () {
         vacateCurrentBlock ();  //Return block's original value before moving
         miner.forward ();
-        cCurBlock = miner.scanCurrent(grid.getGrid ()); //Gets value of current block to be used in vacateCurrentBlock ()
+        cCurBlock = miner.scanCurrent(grid.getGrid ()); //Gets value of current block || to be used in vacateCurrentBlock ()
 
         grid.updateMinerPosition (miner.getX (), miner.getY ());
 
-        if (bSmart)
-            addMove (smartMoveSet, miner.getRotation ());
-        else
-            addMove (randomMoveSet, miner.getRotation ());
-        nRandCount++;
+        moves.add (miner.getRotation ());
+        
+        nMoveCount++;
     }
 
     private int pickDirection (char[] scanned) {
@@ -217,11 +201,7 @@ public class Searcher {
 
     //TESTING FUNCS HERE ========================================
     public void printList () {
-        ArrayList<Integer> toPrint;
 
-        if (bSmart) toPrint = smartMoveSet;
-        else    toPrint = randomMoveSet;
-
-        for (int i : toPrint) System.out.print (i + ",   ");
+        for (int i : moves) System.out.print (i + ",   ");
     }
 }
