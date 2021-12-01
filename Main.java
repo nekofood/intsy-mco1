@@ -12,12 +12,19 @@ public class Main {
 
 		Scanner kb = new Scanner(System.in);
 		int dim = 0;
+		int aiChoice = 0;
 
 		while (dim < 8 || dim > 64) {
 			System.out.print("Enter board dimensions (min 8, max 64): ");
 			dim = kb.nextInt();
 		}
 
+		while (aiChoice != 1 && aiChoice != 2) {
+			System.out.print("Choose agent type (1 - random, 2 - smart): ");
+			aiChoice = kb.nextInt();
+		}
+		if (aiChoice == 2)
+			sc.switchAgent();
 
 		g = new Grid(dim); //temp value, TODO: input
 		m = new Miner(0, 0);
