@@ -14,7 +14,7 @@ public class ControlView extends JFrame {
 	ControlView() {
 		setTitle("Controls");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(200, 400);
+		setSize(200, 200);
 		this.setLayout(new BorderLayout());
 
 		buttonPanel = new JPanel(); //TODO: layout
