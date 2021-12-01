@@ -1,4 +1,5 @@
 import java.util.*;
+import java.Math.*;
 
 public class Grid {
 	private int n;
@@ -64,13 +65,14 @@ public class Grid {
 
 	//Generates pit/s into the board
 	private void generatePit() {
-		int x, y;
+		int x, y,b;
 		int i, pitCount;
 
 		pitCount = (int)(n * 0.25);	//number of pits
 
 		x = 0;
 		y = 0;
+		b = -1;
 
 		//Loops on how many pits are on the grid
 		for (i = 0; i < pitCount; i++) {
@@ -80,6 +82,32 @@ public class Grid {
 				//generate random numbers from 0 to n
 				x = (int)(Math.random() * (n - 1));
 				y = (int)(Math.random() * (n - 1));
+
+				//beacon check per axis
+				if (x == goldX) { //y-axis check
+					for (int j=0;j<n;i++) {
+						//go through the column looking for a beacon
+						if (grid[j][x] == 'B') {
+							b = j;
+							break;
+						}
+					}
+					//check if the pit is between gold and beacon
+					if (getDistance(b,y) + getDistance(y,goldY) == getDistance(b,goldY))
+						continue; //conflict detected, continue the loop!
+				}
+				if (y == goldY) { //x-axis check
+					for (int j=0;j<n;j++) {
+						//go through the row looking for a beacon
+						if (grid[y][j] == 'B') {
+							b = j;
+							break;
+						}
+					}
+					//check if the pit is between gold and beacon
+					if (getDistance(b,x) + getDistance(x,goldX) == getDistance(b,goldX))
+						continue; //conflict detected, continue the loop!
+				}
 			}
 
 			grid[y][x] = 'P';
@@ -135,5 +163,13 @@ public class Grid {
 		goldY = y;
 	}
 
+	//used for pit generation
+	private int getDistance(int a, int b) {
+		if (a > b)
+			return a - b;
+		if (b > a)
+			return b - a;
+		return 0;
+	}
 
 }

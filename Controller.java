@@ -1,5 +1,6 @@
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.JOptionPane;
 
 //the C in MVC
 //this class will be responsible for running the simulation/the agent
@@ -81,9 +82,9 @@ public class Controller {
 		cv.getStepButton().setEnabled(false);
 
 		if (s.checkWinCon() == 1)
-			JOptionPane.showMessageDialog("Miner found gold in " + spacesTraversed + "steps");
+			JOptionPane.showMessageDialog(view, "Miner found gold in " + spacesTraversed + " steps");
 		if (s.checkWinCon() == -1)
-			JOptionPane.showMessageDialog("Miner fell into pit in " + spacesTraversed + "steps");
+			JOptionPane.showMessageDialog(view, "Miner fell into pit in " + spacesTraversed + " steps");
 	}
 
 	//listener for the control window
