@@ -42,7 +42,7 @@ public class Miner {
 
         switch(rotation) {
 			case 270:
-				for(int i = this.getX(), j = this.getY(); j <= 0; j--) {
+				for(int i = this.getX(), j = this.getY(); j < 0; j--) {
 					if(grid[i][j] == 'P') {
 						System.out.print("A pit is nearby");
 						return 'P';	//Once it detects return it insta so it don gotta go through the whole thing
@@ -60,7 +60,7 @@ public class Miner {
 				return '\0';
 
 			case 90:
-				for(int i = this.getX(), j = this.getY(); j <= n; j++){
+				for(int i = this.getX(), j = this.getY(); j < n; j++){
 					if(grid[i][j] == 'P') {
 						System.out.print("A pit is nearby");
 						return 'P';
@@ -78,7 +78,7 @@ public class Miner {
 				return '\0';
 
 			case 180:
-				for(int i = this.getX(), j = this.getY(); i >= 0; i--){
+				for(int i = this.getX(), j = this.getY(); i > 0; i--){
 					if(grid[i][j] == 'P') {
 						System.out.print("A pit is nearby");
 						return 'P';
@@ -96,7 +96,7 @@ public class Miner {
 				return '\0';
 
 			case 0:
-				for(int i = this.getX(), j = this.getY(); i <= n; i++){
+				for(int i = this.getX(), j = this.getY(); i < n; i++){
 					if(grid[i][j] == 'P') {
 						System.out.print("A pit is nearby");
 						return 'P';
