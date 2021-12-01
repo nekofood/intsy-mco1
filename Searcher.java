@@ -10,7 +10,7 @@ public class Searcher {
     private int nRandCount;     //Move counter for rand search
     private int n;
     private char cCurBlock;     //Current block Miner is on
-    private int nCurBrain;      //Current agent. || 1 = Smart, 0 = Trying its best
+    private boolean bSmart;      //Current agent. || T = Smart, F = Mentally inferior
 
     Searcher (Grid g, Miner m) {
         grid = g;
@@ -21,7 +21,7 @@ public class Searcher {
         nSmartCount = 0;
         nRandCount = 0;
         cCurBlock = '\0';
-        nCurBrain = 0;
+        bSmart = false;
     }
 
     //A func to check if it won or lost alrdy
@@ -31,14 +31,14 @@ public class Searcher {
         else return 0;      //Nothing
     }
 
-    //Func to switch agents. include which brain when calling (legend on top)
-    public void switchAgent (int brain) {
-        nCurBrain = brain;
+    //Func to switch agents. its now an on and off switch (alternating)
+    public void switchAgent () {
+        bSmart = !bSmart;
     }
 
     //Picks which search depending on current brain level
     public void Search () {
-        if (nCurBrain == 1) smartSearch ();
+        if (bSmart) smartSearch ();
         else randomSearch ();
     }
 
@@ -48,6 +48,10 @@ public class Searcher {
 
     public int getRandCount () {
         return nRandCount;
+    }
+
+    public int getTotalCount () {
+        return nSmartCount + nRandCount;
     }
 
     public Grid getGrid () {
@@ -150,7 +154,7 @@ public class Searcher {
     public void printList () {
         ArrayList<Integer> toPrint;
 
-        if (nCurBrain == 1) toPrint = smartMoveSet;
+        if (bSmart) toPrint = smartMoveSet;
         else    toPrint = randomMoveSet;
 
         for (int i : toPrint) System.out.print (i + ",   ");
