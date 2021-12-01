@@ -85,6 +85,7 @@ class View extends JFrame {
 			}
 		}
 
+
 		//place miner graphics
 		switch (rotation) {
 			case 0:
@@ -93,7 +94,7 @@ class View extends JFrame {
 				viewGrid[minerY][minerX].setIcon(minerIcon[1]); break;
 			case 180:
 				viewGrid[minerY][minerX].setIcon(minerIcon[2]); break;
-			case 360:
+			case 270:
 				viewGrid[minerY][minerX].setIcon(minerIcon[3]); break;
 		}
 	}
