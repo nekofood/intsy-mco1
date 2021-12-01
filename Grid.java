@@ -92,8 +92,10 @@ public class Grid {
 						}
 					}
 					//check if the pit is between gold and beacon
-					if (getDistance(b,y) + getDistance(y,goldY) == getDistance(b,goldY))
-						continue; //conflict detected, continue the loop!
+					if (getDistance(b,y) + getDistance(y,goldY) == getDistance(b,goldY)) {
+						x = y = 0;
+						continue;	//conflict detected, continue the loop!
+					}
 				}
 				if (y == goldY) { //x-axis check
 					for (int j=0;j<n;j++) {
@@ -104,8 +106,10 @@ public class Grid {
 						}
 					}
 					//check if the pit is between gold and beacon
-					if (getDistance(b,x) + getDistance(x,goldX) == getDistance(b,goldX))
-						continue; //conflict detected, continue the loop!
+					if (getDistance(b,x) + getDistance(x,goldX) == getDistance(b,goldX)) {
+						x = y = 0;
+						continue;	 //conflict detected, continue the loop!
+					}
 				}
 			}
 
