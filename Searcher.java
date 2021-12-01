@@ -107,8 +107,7 @@ public class Searcher {
 
         grid.updateMinerPosition (miner.getX (), miner.getY ());
 
-        moves.add (miner.getRotation ());
-        
+        moves.add (miner.getRotation ());        
         nMoveCount++;
     }
 
@@ -136,25 +135,28 @@ public class Searcher {
             else    //Edge of grid
                 wantValues[i] = -2;
         }
+
+        //If miner is currently backtracking
         if (bIsBacktracking) {
-            if (wantValues[(nCurDirInd + 1) % 4] >= 0)
-                wantValues[(nCurDirInd + 1) % 4] = 10;
+            if (wantValues[(nCurDirInd + 1) % 4] >= 0)  //And it's parallel move is valid
+                wantValues[(nCurDirInd + 1) % 4] = 10;  //Make it a priority pick for moving
             
-            if (wantValues[(nCurDirInd + 3) % 4] >= 0)
+            if (wantValues[(nCurDirInd + 3) % 4] >= 0)  //Same as that ^
                 wantValues[(nCurDirInd + 3) % 4] = 10;
         }
 
         nNewDir = getMaxValIndex (wantValues);
 
-        if (wantValues[nNewDir] == 0)   //If nothing dope is near
+        if (wantValues[nNewDir] == 0) {   //If nothing dope is near
             if (wantValues[nCurDirInd] == 0)    //And current direction has nothing bad
                 nNewDir = nCurDirInd;           //Keep going same direction, else it returns the new direction
-        else if (wantValues[nNewDir] == -1)     //If pit on every direction, we let rng do the work
-            do
+        }
+        else if (wantValues[nNewDir] < 0)     //If trash on every direction, we let rng do the work
+                do
                 nNewDir = (int)(Math.random () * 4);    //Pick a random direction
             while (!(isValidDir (nNewDir * 90)));   //Makes sure random direction is valid
 
-        if (nMoveCount > 0)
+        if (nMoveCount > 0) //Can only start backing when moved atleast once
             bIsBacktracking = checkIfBacking (nNewDir * 90);
         
         return nNewDir;
@@ -164,48 +166,59 @@ public class Searcher {
     private int getMaxValIndex (int[] vals) {
         int i;
         int nCurInd = 1;
+        int nCurDir = miner.getRotation () / 90;
         int nCurMaxInd = 0;
+        int nMaxBetPerp = 0;
+
         for (i = 1; i <= vals.length; i++, nCurInd++) {
             nCurInd %= 4;
             if (vals[nCurInd] >= vals[nCurMaxInd])
                 nCurMaxInd = nCurInd;
         }
 
+        nMaxBetPerp = Math.max (vals[(nCurDir + 1) % 4], vals[(nCurDir + 3) % 4]);  //Max value between perpendicular directions
+
+        //If perpendicular directions arent blocked && if current direction is blocked
+        //Get parallel direction with greatest value
+        if (nMaxBetPerp >= 0 && vals[nCurDir] < 0)
+            if (vals[(nCurDir + 1) % 4] == nMaxBetPerp) nCurMaxInd = (nCurDir + 1) % 4;
+            else if (vals[(nCurDir + 3) % 4] == nMaxBetPerp) nCurMaxInd = (nCurDir + 3) % 4;
+        
         return nCurMaxInd;
     }
 
+    //Checks if miner undid a step
     private boolean checkIfBacking (int dir) {
-        if (bIsBacktracking) {
-            if (dir == (moves.get (nBackMoveInd) + 180) % 360) {
+        if (bIsBacktracking) {  //If miner was already backing
+            if (dir == (moves.get (nBackMoveInd) + 180) % 360)  //Check if miner is still backtracking
                 return true;
-            }
             else return false;
         }
         else {
-            if (dir == (moves.get (nMoveCount - 1) + 180) % 360) {
-                nBackMoveInd = nMoveCount - 1;
+            if (dir == (moves.get (nMoveCount - 1) + 180) % 360) {  //Checks if move is in opposite direction of previous move (a 180)
+                nBackMoveInd = nMoveCount - 1;  //Keep track of which move it was || when he started backing/undoing
                 return true;
             }
             else return false;
         }
     }
 
-    //Insted of the binding thingy, checks if direction to move at is valid
+    //Checks if direction to move at is valid (in bounds)
     private boolean isValidDir (int dir) {
         if (dir == 0)           //Right
             if (miner.getX () == n - 1) return false;
             else return true;
         else if (dir == 90)    //Down
-        if (miner.getY () == n - 1) return false;
-        else return true;
+            if (miner.getY () == n - 1) return false;
+            else return true;
         else if (dir == 180)    //Left
             if (miner.getX () == 0) return false;
             else return true;
         else if (dir == 270)     //Up
-        if (miner.getY () == 0) return false;
-        else return true;
+            if (miner.getY () == 0) return false;
+            else return true;
         
-        return false;   //return false if for sum reason direction is invalid
+        return false;   //return false if for sum reason direction is invalid || although it shouldnt reach here theoretically
     }
 
     //Scans in all directions and keeps what was scanned, per direction, in an array
