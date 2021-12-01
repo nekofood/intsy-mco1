@@ -1,5 +1,5 @@
 public class Miner {
-	private int rotation; //0deg = right, 90deg = up, and so on
+	private int rotation; //0deg = right, 90deg = down, and so on
 	private int x,y;
 
 	Miner(int sx, int sy) {
@@ -10,6 +10,7 @@ public class Miner {
 
 	//Rotate counter-clockwise
 	public void rotate() {
+		System.out.println (rotation);
 		rotation = (rotation + 90) % 360;
 	}
 
@@ -19,11 +20,11 @@ public class Miner {
 			case 0:
 				++x; break;
 			case 90:
-				--y; break;
+				++y; break;
 			case 180:
 				--x; break;
 			case 270:
-				++y; break;
+				--y; break;
 			default:
 				System.out.println("Miner is facing invalid direction");
 				rotation = 0;
@@ -39,19 +40,20 @@ public class Miner {
     // allows the miner to scan mining area on his current front, returns the nearest object in his vicinity
     public char scan (char[][] grid) {
 		int n = grid.length;
+		int x, y;
 
         switch(rotation) {
-			case 270:
-				for(int i = this.getX(), j = this.getY(); j < 0; j--) {
-					if(grid[i][j] == 'P') {
+			case 90:	//Downward
+				for(x = this.getX(), y = this.getY() + 1; y < n; y++) {
+					if(grid[y][x] == 'P') {
 						System.out.print("A pit is nearby");
 						return 'P';	//Once it detects return it insta so it don gotta go through the whole thing
 					}
-					else if(grid[i][j] == 'B') {
+					else if(grid[y][x] == 'B') {
 						System.out.print("A beacon is nearby");
 						return 'B';
 					}
-					else if(grid[i][j] == 'G') {
+					else if(grid[y][x] == 'G') {
 						System.out.print("A pot of gold is nearby");
 						return 'G';
 					}
@@ -59,17 +61,17 @@ public class Miner {
 				System.out.print("Nothing is nearby");
 				return '\0';
 
-			case 90:
-				for(int i = this.getX(), j = this.getY(); j < n; j++){
-					if(grid[i][j] == 'P') {
+			case 180:	//Leftward
+				for(x = this.getX() - 1, y = this.getY();  x >= 0; x--){
+					if(grid[y][x] == 'P') {
 						System.out.print("A pit is nearby");
 						return 'P';
 					}
-					else if(grid[i][j] == 'B') {
+					else if(grid[y][x] == 'B') {
 						System.out.print("A beacon is nearby");
 						return 'B';
 					}
-					else if(grid[i][j] == 'G') {
+					else if(grid[y][x] == 'G') {
 						System.out.print("A pot of gold is nearby");
 						return 'G';
 					}
@@ -77,35 +79,35 @@ public class Miner {
 				System.out.print("Nothing is nearby");
 				return '\0';
 
-			case 180:
-				for(int i = this.getX(), j = this.getY(); i > 0; i--){
-					if(grid[i][j] == 'P') {
-						System.out.print("A pit is nearby");
-						return 'P';
-					}
-					else if(grid[i][j] == 'B') {
-						System.out.print("A beacon is nearby");
-						return 'B';
-					}
-					else if(grid[i][j] == 'G') {
-						System.out.print("A pot of gold is nearby");
-						return 'G';
-					}
+			case 270:	//Upward
+			for(x = this.getX(), y = this.getY() - 1;  y >= 0; y--){
+				if(grid[y][x] == 'P') {
+					System.out.print("A pit is nearby");
+					return 'P';
 				}
-				System.out.print("Nothing is nearby");
-				return '\0';
+				else if(grid[y][x] == 'B') {
+					System.out.print("A beacon is nearby");
+					return 'B';
+				}
+				else if(grid[y][x] == 'G') {
+					System.out.print("A pot of gold is nearby");
+					return 'G';
+				}
+			}
+			System.out.print("Nothing is nearby");
+			return '\0';
 
-			case 0:
-				for(int i = this.getX(), j = this.getY(); i < n; i++){
-					if(grid[i][j] == 'P') {
+			case 0:	//Rightward
+				for(x = this.getX() + 1, y = this.getY();  x < n; x++){
+					if(grid[y][x] == 'P') {
 						System.out.print("A pit is nearby");
 						return 'P';
 					}
-					else if(grid[i][j] == 'B') {
+					else if(grid[y][x] == 'B') {
 						System.out.print("A beacon is nearby");
 						return 'B';
 					}
-					else if(grid[i][j] == 'G') {
+					else if(grid[y][x] == 'G') {
 						System.out.print("A pot of gold is nearby");
 						return 'G';
 					}
