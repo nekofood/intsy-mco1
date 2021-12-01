@@ -53,6 +53,10 @@ public class Searcher {
         return miner;
     }
 
+    public char getCurrentBlock () {
+        return cCurBlock;
+    }
+
     //The main searching alg will be here
     private void smartSearch () {
         int i;  //just for any loop used here
@@ -62,15 +66,14 @@ public class Searcher {
         char[] scannedDirection = new char[4];
 
         //if it found gold, it would stop scanning and just go on straight line
-        //this is an efficiency thing so dont mind the 'if' condition for now
-        //if (!bFoundGoldDir) {
+        if (!bFoundGoldDir) {
             scanAllDirection (scannedDirection);
             nNewDirection = pickDirection (scannedDirection);
             nNewDirection *= 90;
 
             while (miner.getRotation() != nNewDirection)
                 miner.rotate ();
-        //}
+        }
 
         moveMiner ();
     }
@@ -113,6 +116,8 @@ public class Searcher {
         int nCurDirInd = miner.getRotation () / 90;
         int nNewDir;
 
+        //It assigns a value to scan result in each direction || [0] Right, [1] Down, ...
+        //Value scales with block favorability
         for (i = 0; i < scanned.length; i++) {
             if (scanned[i] == 'P')
                 wantValues[i] = -1;
@@ -153,11 +158,6 @@ public class Searcher {
                 nCurMaxInd = nCurInd;
 
         return nCurMaxInd;
-    }
-
-    //This adds the move done to the list
-    private void addMove (ArrayList<Integer> moveSet, int nDirection) {
-        moveSet.add (nDirection);
     }
 
     //Insted of the binding thingy, checks if direction to move at is valid
