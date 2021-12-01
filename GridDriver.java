@@ -12,13 +12,20 @@ public class GridDriver {
         Searcher se = new Searcher (board, mi);
         int i = 0;
 
-        while (i++ != 10) {
+        
+        se.switchAgent();
+        while (se.checkWinCon() == 0) {
             se.Search ();
             se.getGrid ().printGrid ();
 
             kb.nextLine ();     //just keep pressing enter
         }
 
+        if (se.checkWinCon () == 1)
+            System.out.println ("LETS GOOOOOOOOOOOOOOOOOOOOLD");
+        else
+            System.out.println ("L");
+            
         se.printList ();    //Shows the directions it moved
 
     }
