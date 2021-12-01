@@ -27,8 +27,11 @@ class View extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		//initialize icons
-		minerIcon[4] = {new ImageIcon("img/miner_R.png"), new ImageIcon("img/miner_D.png"),
-					 new ImageIcon("img/Miner_L.png"), new ImageIcon("img/miner_U.png")};
+		minerIcon = new ImageIcon[4];
+		minerIcon[0] = new ImageIcon("img/miner_r.png");
+		minerIcon[1] = new ImageIcon("img/miner_d.png");
+		minerIcon[2] = new ImageIcon("img/miner_l.png");
+		minerIcon[3] = new ImageIcon("img/miner_u.png");
 
 		pitIcon = new ImageIcon("img/pit.png");
 		beaconIcon = new ImageIcon("img/beacon.png");
@@ -61,6 +64,8 @@ class View extends JFrame {
 		}
 
 		int minerX, minerY;
+		minerY = 0;
+		minerX = 0; //only used for miner graphics check so donut worry
 
 		//place the icons on the grid
 		for (int i = 0; i < n; i++) {
@@ -82,13 +87,13 @@ class View extends JFrame {
 
 		//place miner graphics
 		switch (rotation) {
-			case '0':
+			case 0:
 				viewGrid[minerY][minerX].setIcon(minerIcon[0]); break;
-			case '90':
+			case 90:
 				viewGrid[minerY][minerX].setIcon(minerIcon[1]); break;
-			case '180':
+			case 180:
 				viewGrid[minerY][minerX].setIcon(minerIcon[2]); break;
-			case '360':
+			case 360:
 				viewGrid[minerY][minerX].setIcon(minerIcon[3]); break;
 		}
 	}

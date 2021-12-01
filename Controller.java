@@ -60,7 +60,7 @@ public class Controller {
 			while (isPlaying == true) {
 					s.Search();
 					incrementSpacesTraversed();
-					view.updateView(grid.getGrid());
+					view.updateView(grid.getGrid(), s.getMiner().getRotation());
 					try {
 						Thread.sleep(700);
 					} catch (InterruptedException e) {
@@ -74,7 +74,7 @@ public class Controller {
 				incrementSpacesTraversed();
 				step = 0;
 				System.out.println("Step...");
-				view.updateView(grid.getGrid());
+				view.updateView(grid.getGrid(), s.getMiner().getRotation());
 			}
 		}
 
