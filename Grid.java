@@ -1,5 +1,4 @@
 import java.util.*;
-import java.Math.*;
 
 public class Grid {
 	private int n;
