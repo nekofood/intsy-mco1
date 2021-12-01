@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -18,7 +20,7 @@ class View extends JFrame {
 
 		setTitle("Miner");
 		setLayout(new BorderLayout());
-		setSize(n*32,n*32);
+		setSize(n*24,n*24);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,11 +31,13 @@ class View extends JFrame {
 		beaconIcon = new ImageIcon("img/beacon.png");
 		goldIcon = new ImageIcon("img/gold.png");
 
-		panel.setLayout(new GridLayout(n, n, 4, 4));
+		panel.setLayout(new GridLayout(n, n));
 
+		Border blackline = BorderFactory.createLineBorder(Color.black);
 		for (int i = 0; i < dim; i++) { //create labels
 			for (int j = 0; j < dim; j++) {
 				viewGrid[i][j] = new JLabel();
+				viewGrid[i][j].setBorder(blackline);
 				panel.add(viewGrid[i][j]);
 			}
 		}
