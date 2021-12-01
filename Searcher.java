@@ -5,11 +5,12 @@ public class Searcher {
     private Miner miner;
     private ArrayList<Integer> moves; // where the direction of moves will be store
     private int nMoveCount;
+    private int nBackMoveInd;
     private int n;
     private char cCurBlock;     //Current block Miner is on
     private boolean bSmart;      //Current agent. || T = Smart, F = Mentally inferior
     private boolean bFoundGoldDir;
-    private boolean bFoundBeaconDir;
+    private boolean bIsBacktracking;
 
     Searcher (Grid g, Miner m) {
         grid = g;
@@ -17,10 +18,11 @@ public class Searcher {
         n = grid.getN ();
         moves = new ArrayList<Integer> ();
         nMoveCount = 0;
+        nBackMoveInd = -1;
         cCurBlock = '\0';
         bSmart = false;
         bFoundGoldDir = false;
-        bFoundBeaconDir = false;
+        bIsBacktracking = false;
     }
 
     //A func to check if it won or lost alrdy
@@ -110,6 +112,7 @@ public class Searcher {
         nMoveCount++;
     }
 
+    //Evaluates which direction would be dopest
     private int pickDirection (char[] scanned) {
         int i;
         int[] wantValues = new int[4];
@@ -133,6 +136,13 @@ public class Searcher {
             else    //Edge of grid
                 wantValues[i] = -2;
         }
+        if (bIsBacktracking) {
+            if (wantValues[(nCurDirInd + 1) % 4] >= 0)
+                wantValues[(nCurDirInd + 1) % 4] = 10;
+            
+            if (wantValues[(nCurDirInd + 3) % 4] >= 0)
+                wantValues[(nCurDirInd + 3) % 4] = 10;
+        }
 
         nNewDir = getMaxValIndex (wantValues);
 
@@ -144,6 +154,9 @@ public class Searcher {
                 nNewDir = (int)(Math.random () * 4);    //Pick a random direction
             while (!(isValidDir (nNewDir * 90)));   //Makes sure random direction is valid
 
+        if (nMoveCount > 0)
+            bIsBacktracking = checkIfBacking (nNewDir * 90);
+        
         return nNewDir;
     }
 
@@ -159,6 +172,22 @@ public class Searcher {
         }
 
         return nCurMaxInd;
+    }
+
+    private boolean checkIfBacking (int dir) {
+        if (bIsBacktracking) {
+            if (dir == (moves.get (nBackMoveInd) + 180) % 360) {
+                return true;
+            }
+            else return false;
+        }
+        else {
+            if (dir == (moves.get (nMoveCount - 1) + 180) % 360) {
+                nBackMoveInd = nMoveCount - 1;
+                return true;
+            }
+            else return false;
+        }
     }
 
     //Insted of the binding thingy, checks if direction to move at is valid
