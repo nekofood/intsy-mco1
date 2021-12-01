@@ -84,7 +84,7 @@ public class Grid {
 
 				//beacon check per axis
 				if (x == goldX) { //y-axis check
-					for (int j=0;j<n;i++) {
+					for (int j=0;j<n;j++) {
 						//go through the column looking for a beacon
 						if (grid[j][x] == 'B') {
 							b = j;
