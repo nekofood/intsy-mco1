@@ -47,12 +47,16 @@ public class Controller {
 	}
 
 	public void gameLoop() {
-		view.updateView(grid.getGrid());
-		isPlaying = true;
+		view.updateView(grid.getGrid(), s.getMiner().getRotation());
+		isPlaying = false;
 		cv.getPlayButton().setEnabled(true);
 		cv.getPauseButton().setEnabled(false);
 		cv.getStepButton().setEnabled(true); //enable step button while in Pause mode
 		while (!gameOver) {
+			//bandaid thing that lets the thread wait for play and stuff
+			int var = 1;
+			String var1 = String.valueOf(var);
+
 			while (isPlaying == true) {
 					s.Search();
 					incrementSpacesTraversed();
@@ -92,6 +96,7 @@ public class Controller {
 					cv.getPlayButton().setEnabled(false);
 					cv.getPauseButton().setEnabled(true);
 					cv.getStepButton().setEnabled(false); //disable step button while in Play mode
+					System.out.println(isPlaying);
 					break;
 				case "Step":
 					/* code to advance the agent one step goes here... */
