@@ -15,7 +15,7 @@ public class Main {
 
 		while (dim < 8 || dim > 64) {
 			System.out.println("Enter board dimensions (min 8, max 64): ");
-			dim = kb.nextLine();
+			dim = kb.nextInt();
 		}
 
 
