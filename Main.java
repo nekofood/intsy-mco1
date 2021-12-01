@@ -1,3 +1,5 @@
+import java.util.*;
+
 //the driver
 public class Main {
 	public static void main(String[] args) {
@@ -8,7 +10,14 @@ public class Main {
 		Miner m;
 		Searcher sc;
 
-		int dim = 8;
+		Scanner kb = new Scanner(System.in);
+		int dim = 0;
+
+		while (dim < 8 || dim > 64) {
+			System.out.println("Enter board dimensions (min 8, max 64): ");
+			dim = kb.nextLine();
+		}
+
 
 		g = new Grid(dim); //temp value, TODO: input
 		m = new Miner(0, 0);
