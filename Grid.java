@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class Grid {
 	private int n;
 	/* The things on the grid, such as beacons, pits, and the pot of gold, will
@@ -33,21 +31,6 @@ public class Grid {
 		grid[y][x] = 'M';
 	}
 
-	//Console printing of board (for testing)
-	public void printGrid () {
-        int i, j;
-
-        for (i = 0; i < n; i++) {
-            for (j = 0; j < n; j++) {
-				if (grid[i][j] != '\0')
-                	System.out.print(grid[i][j]);
-				else
-					System.out.print(".");
-			}
-            System.out.print("\n");
-        }
-    }
-
 	public int getN () {
 		return n;
 	}
@@ -55,7 +38,7 @@ public class Grid {
 		return grid;
 	}
 
-	//TODO: "distribute" method to place the things on the grid
+	//"distribute" method to place the things on the grid
 	private void generateThings() {
 		generateGold ();
 		generateBeacon ();
@@ -79,8 +62,8 @@ public class Grid {
 					 position isnt empty */
 			while (grid[y][x] == 'M' || grid[y][x] != '\0') {
 				//generate random numbers from 0 to n
-				x = (int)(Math.random() * (n - 1));
-				y = (int)(Math.random() * (n - 1));
+				x = (int)(Math.random() * n);
+				y = (int)(Math.random() * n);
 
 				//beacon check per axis
 				if (x == goldX) { //y-axis check
@@ -97,6 +80,7 @@ public class Grid {
 						continue;	//conflict detected, continue the loop!
 					}
 				}
+
 				if (y == goldY) { //x-axis check
 					for (int j=0;j<n;j++) {
 						//go through the row looking for a beacon
@@ -135,12 +119,12 @@ public class Grid {
 			if (Math.random() > 0.5) {
 				while (grid[y][x] != '\0' || grid[y][x] == 'M') {
 					x = goldX;
-					y = (int)(Math.random() * (n - 1));
+					y = (int)(Math.random() * n);
 				}
 			}
 			else {
 				while (grid[y][x] != '\0' || grid[y][x] == 'M') {
-					x = (int)(Math.random() * (n - 1));
+					x = (int)(Math.random() * n);
 					y = goldY;
 				}
 			}
@@ -157,8 +141,8 @@ public class Grid {
 		y = 0;
 
 		while (grid[y][x] == 'M' || grid[y][x] != '\0') {
-			x = (int)(Math.random() * (n - 1));
-			y = (int)(Math.random() * (n - 1));
+			x = (int)(Math.random() * n);
+			y = (int)(Math.random() * n);
 		}
 
 		grid[y][x] = 'G';

@@ -61,7 +61,6 @@ public class Searcher {
 
     //The main searching alg will be here
     private void smartSearch () {
-        int i;  //just for any loop used here
         int nNewDirection;
         /*  This where it keeps tabs on scan result in what direction. [0] right, [1] top ...
             'L' just means Miner is on the edge of that direction already, otherwise it puts the letter */

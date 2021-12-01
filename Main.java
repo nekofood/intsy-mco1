@@ -24,6 +24,8 @@ public class Main {
 			aiChoice = kb.nextInt();
 		}
 
+		kb.close ();
+		
 		g = new Grid(dim); //temp value, TODO: input
 		m = new Miner(0, 0);
 		cv = new ControlView();
