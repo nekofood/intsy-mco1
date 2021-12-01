@@ -77,6 +77,7 @@ public class Grid {
 			/* while position isnt the miner's or
 					 position isnt empty */
 			while (grid[y][x] == 'M' || grid[y][x] != '\0' || x == goldX || y == goldY) { //prevent pit from spawning on the same y/x as gold
+				//TODO: GET RID OF THIS LAZY ASS FIX
 				//generate random numbers from 0 to n
 				x = (int)(Math.random() * (n - 1));
 				y = (int)(Math.random() * (n - 1));

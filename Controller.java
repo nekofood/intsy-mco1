@@ -7,8 +7,7 @@ public class Controller {
 	private Grid grid;
 	private View view;
 	private ControlView cv;
-	private boolean isPlaying, //is the simulation in "play" mode?
-					gameOver;
+	private boolean isPlaying; //is the simulation in "play" mode?
 	private int spacesTraversed;
 	private int step; //worst idea ever
 	private Searcher s;
@@ -19,7 +18,6 @@ public class Controller {
 		cv = c;
 		s = sc;
 		isPlaying = false;
-		gameOver = false;
 		spacesTraversed = 0;
 
 		step = 0;
@@ -52,17 +50,17 @@ public class Controller {
 		cv.getPlayButton().setEnabled(true);
 		cv.getPauseButton().setEnabled(false);
 		cv.getStepButton().setEnabled(true); //enable step button while in Pause mode
-		while (!gameOver) {
+		while (s.checkWinCon() == 0) {
 			//bandaid thing that lets the thread wait for play and stuff
 			int var = 1;
 			String var1 = String.valueOf(var);
 
-			while (isPlaying == true) {
+			while (isPlaying == true && s.checkWinCon() == 0) {
 					s.Search();
 					incrementSpacesTraversed();
 					view.updateView(grid.getGrid(), s.getMiner().getRotation());
 					try {
-						Thread.sleep(700);
+						Thread.sleep(500);
 					} catch (InterruptedException e) {
 						System.out.println("We done goofed!");
 					}
@@ -78,6 +76,14 @@ public class Controller {
 			}
 		}
 
+		cv.getPlayButton().setEnabled(false);
+		cv.getPauseButton().setEnabled(false);
+		cv.getStepButton().setEnabled(false);
+
+		if (s.checkWinCon() == 1)
+			JOptionPane.showMessageDialog("Miner found gold in " + spacesTraversed + "steps");
+		if (s.checkWinCon() == -1)
+			JOptionPane.showMessageDialog("Miner fell into pit in " + spacesTraversed + "steps");
 	}
 
 	//listener for the control window
