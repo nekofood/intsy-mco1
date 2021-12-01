@@ -23,8 +23,6 @@ public class Main {
 			System.out.print("Choose agent type (1 - random, 2 - smart): ");
 			aiChoice = kb.nextInt();
 		}
-		if (aiChoice == 2)
-			sc.switchAgent();
 
 		g = new Grid(dim); //temp value, TODO: input
 		m = new Miner(0, 0);
@@ -32,6 +30,10 @@ public class Main {
 		v = new View(dim);
 		sc = new Searcher(g, m);
 
+		if (aiChoice == 2)
+			sc.switchAgent();
+
+		
 		c = new Controller(g, v, cv, sc);
 
 		c.gameLoop();
